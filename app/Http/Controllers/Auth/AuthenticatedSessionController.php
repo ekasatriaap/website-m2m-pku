@@ -26,18 +26,25 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        $user = User::where('username', $request->username)->first();
+        $credentials = $request->only('username', 'password');
 
-        if (!$user) {
-            return false;
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+
+            $guard = match (true) {
+                $user->isRoot() => 'root',
+                $user->isOperator() => 'operator',
+                $user->isAdmin() => 'admin',
+                default => null,
+            };
+
+            if ($guard) {
+                Auth::guard($guard)->login($user);
+                return redirect(route('dashboard', absolute: false));
+            }
         }
 
-        return Auth::guard($user->level)->attempt(
-            $this->credentials($request),
-            $request->filled('remember')
-        );
-
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect(route('login'))->withErrors(['login' => 'Credentials are incorrect']);
     }
 
     /**
@@ -45,12 +52,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        Auth::guard(activeGuard())->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect(route('login'));
     }
 }

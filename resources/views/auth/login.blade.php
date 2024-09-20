@@ -11,10 +11,10 @@
 
                     <div class="card-body">
                         <x-form method="POST" action="{{ route('login') }}">
-                            <x-form-group :label="__('Username')" for="username" id="username" name="username" :value="old('username')"
+                            <x-form-input :label="__('Username')" id="username" name="username" :value="old('username')"
                                 autocomplete="off" required />
-                            <x-form-group :label="__('Password')" for="password" id="password" name="password"
-                                type="password" :value="old('password')" required />
+                            <x-form-input :label="__('Password')" id="password" name="password" type="password"
+                                :value="old('password')" required />
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" name="remember" class="custom-control-input" tabindex="3"

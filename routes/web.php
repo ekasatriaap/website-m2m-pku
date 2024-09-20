@@ -1,21 +1,29 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('website');
 
-Route::get('/dashboard', function () {
-    // dd(auth()->guard('root')->check());
-    return view('cms.dashboard', ['title' => "Dashboard"]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::prefix("cms/")->middleware("auth")->group(function () {
+    Route::get('/dashboard', function () {
+        return view('cms.dashboard', ['title' => "Dashboard"]);
+    })->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::controller("ProfileController")->group(function () {
+        Route::get('/profile', 'edit')->name('profile.edit');
+        Route::patch('/profile', 'update')->name('profile.update');
+        Route::delete('/profile', 'destroy')->name('profile.destroy');
+    });
+
+    Route::controller("BidangController")->group(function () {
+        Route::get('/bidang', 'index')->name('bidang.index');
+    });
+
+    Route::controller("UserController")->group(function () {
+        Route::get('/users', 'index')->name('users.index');
+    });
 });
 
 require __DIR__ . '/auth.php';

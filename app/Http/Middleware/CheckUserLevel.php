@@ -14,12 +14,22 @@ class CheckUserLevel
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $level): Response
+    public function handle(Request $request, Closure $next, $guard = null): Response
     {
-        if (Auth::check() && Auth::user()->level === $level) {
-            return $next($request);
+        $user = Auth::guard($guard)->user();
+
+        if ($guard === 'root' && !$user->isRoot()) {
+            return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
         }
 
-        return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
+        if ($guard === 'operator' && !$user->isOperator()) {
+            return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
+        }
+
+        if ($guard === 'admin' && !$user->isAdmin()) {
+            return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
+        }
+
+        return $next($request);
     }
 }
