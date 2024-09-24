@@ -22,3 +22,25 @@ if (!function_exists('accountLogin')) {
     return auth(activeGuard())->user();
   }
 }
+
+if (!function_exists('accountIsRoot')) {
+  function accountIsRoot()
+  {
+    return activeGuard() === ROOT;
+  }
+}
+
+if (!function_exists('accountIsOperator')) {
+  function accountIsOperator()
+  {
+    return activeGuard() === OPERATOR;
+  }
+}
+
+if (!function_exists('accountIsAdmin')) {
+
+  function accountIsAdmin()
+  {
+    return activeGuard() === ADMIN;
+  }
+}

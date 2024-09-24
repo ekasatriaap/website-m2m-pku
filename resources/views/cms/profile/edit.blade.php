@@ -4,7 +4,7 @@
             <x-row>
                 <div class="col-md-6">
                     <x-card title="Edit Profile">
-                        <x-form method="post" action="{{ route('profile.update') }}" id="update-profile-form">
+                        <x-form method="post" action="{{ route('cms.profile.update') }}" id="update-profile-form">
                             @method('patch')
                             <x-form-input :label="__('Name')" id="name" name="name" :value="old('name', $user->name)" required />
                             <x-form-input :label="__('Username')" id="username" name="username" :value="old('username', $user->username)" required />
@@ -46,7 +46,7 @@
                     const form = this;
                     const url = $(form).attr('action');
                     const method = $(form).attr('method');
-                    ajaxMaster(form, url, method).catch((error) => {
+                    ajaxMasterSimpan(form, url, method).catch((error) => {
                         setInvalidFeedback(error, form);
                     });
                 });
@@ -56,7 +56,7 @@
                     const form = this;
                     const url = $(form).attr('action');
                     const method = $(form).attr('method');
-                    ajaxMaster(form, url, method).catch((error) => {
+                    ajaxMasterSimpan(form, url, method).catch((error) => {
                         setInvalidFeedback(error, form);
                     });
                 });

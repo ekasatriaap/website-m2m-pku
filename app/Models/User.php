@@ -4,12 +4,15 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, LogsActivity, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +24,8 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'id_bidang',
+        'level'
     ];
 
     /**
@@ -59,5 +64,17 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->level === 'admin';
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['name', 'username', 'email', 'level', 'id_bidang']) // atribut yang ingin dicatat
+            ->setDescriptionForEvent(fn(string $eventName) => "User has been {$eventName}");
+    }
+
+    public function bidang()
+    {
+        return $this->hasOne(Bidang::class, 'id', 'id_bidang')->withDefault(['nama_bidang' => '-']);
     }
 }

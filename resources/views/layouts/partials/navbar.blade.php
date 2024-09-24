@@ -12,7 +12,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-title">Account</div>
-                <a href="{{ route('profile.edit') }}" class="dropdown-item has-icon">
+                <a href="{{ route('cms.profile.edit') }}" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
                 <div class="dropdown-divider"></div>

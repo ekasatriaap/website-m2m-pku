@@ -1,5 +1,5 @@
 <?php
-
+const DATATABLE_ID = "drsk-datatable";
 const BERHASIL_SIMPAN = 'Data berhasil disimpan';
 const GAGAL_SIMPAN = 'Data gagal disimpan';
 const BERHASIL_UBAH = 'Data berhasil diubah';
@@ -13,3 +13,10 @@ const BERHASIL_LOGIN = 'Login Berhasil';
 const ROOT = 'root';
 const OPERATOR = 'operator';
 const ADMIN = 'admin';
+
+const LEVEL_USER = [
+  'operator' => "Operator",
+  "admin" => "Admin"
+];
+
+const NEWS_STATUS_PUBLISH = 'publish';

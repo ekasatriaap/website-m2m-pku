@@ -8,12 +8,12 @@ if (!function_exists('getMenu')) {
       $menu = [
         [
           "name" => "Dashboard",
-          "url" => "dashboard",
+          "url" => "cms.dashboard",
           "icon" => "fas fa-tachometer-alt",
         ],
         [
-          "name" => "News",
-          "url" => "news.index",
+          "name" => "Berita",
+          "url" => "cms.news.index",
           "icon" => "fas fa-newspaper",
         ]
       ];
@@ -21,7 +21,7 @@ if (!function_exists('getMenu')) {
       $menu = [
         [
           "name" => "Dashboard",
-          "url" => "dashboard",
+          "url" => "cms.dashboard",
           "icon" => "fas fa-tachometer-alt",
         ],
         [
@@ -30,13 +30,23 @@ if (!function_exists('getMenu')) {
           "child" => [
             [
               "name" => "Bidang",
-              "url" => "bidang.index",
+              "url" => "cms.bidang.index",
             ],
             [
               "name" => "Users",
-              "url" => "users.index"
+              "url" => "cms.users.index"
             ]
           ]
+        ],
+        [
+          "name" => "Berita",
+          "url" => "cms.news.index",
+          "icon" => "fas fa-newspaper",
+        ],
+        [
+          "name" => "Galeri",
+          "url" => "cms.gallery.index",
+          "icon" => "fas fa-images",
         ]
       ];
     }

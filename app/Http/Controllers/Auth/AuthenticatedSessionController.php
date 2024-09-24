@@ -40,7 +40,7 @@ class AuthenticatedSessionController extends Controller
 
             if ($guard) {
                 Auth::guard($guard)->login($user);
-                return redirect(route('dashboard', absolute: false));
+                return redirect(route('cms.dashboard', absolute: false));
             }
         }
 

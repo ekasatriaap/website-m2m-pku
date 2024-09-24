@@ -23,7 +23,7 @@
                         <ul class="dropdown-menu">
                             @foreach ($parent['child'] as $child)
                                 <li>
-                                    <a class="nav-link" href="{{ $child['url'] }}">{{ $child['name'] }}</a>
+                                    <a class="nav-link" href="{{ route($child['url']) }}">{{ $child['name'] }}</a>
                                 </li>
                             @endforeach
                         </ul>

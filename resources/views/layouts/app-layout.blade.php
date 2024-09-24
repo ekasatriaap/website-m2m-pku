@@ -4,7 +4,7 @@
 <head>
     @include('layouts.partials.meta')
     <title>{{ $title }}</title>
-
+    <meta name="csrf-token" content="{!! csrf_token() !!}" />
     @include('layouts.partials.styles')
     @stack('add-styles')
 
@@ -32,6 +32,7 @@
                     {{ $slot }}
                     {{-- main content end --}}
                 </section>
+                <x-modal title="Drsk modal" id="default-drsk-modal" />
             </div>
 
             {{-- footer start --}}
@@ -41,7 +42,27 @@
     </div>
 
     {{-- script start --}}
+    <script>
+        const DATATABLE_ID = `{{ DATATABLE_ID }}`;
+        let DRSKMODAL;
+    </script>
     @include('layouts.partials.scripts')
+    <script>
+        $(document).ready(function() {
+            @if (session()->has('sweet_success'))
+                alertSweet(`{{ session('sweet_success') }}`, 'success');
+            @endif
+            @if (session()->has('sweet_warning'))
+                alertSweet(`{{ session('sweet_warning') }}`, 'warning');
+            @endif
+            @if (session()->has('sweet_info'))
+                alertSweet(`{{ session('sweet_info') }}`, 'info');
+            @endif
+            @if (session()->has('sweet_error'))
+                alertSweet(`{{ session('sweet_error') }}`, 'error');
+            @endif
+        });
+    </script>
     @stack('add-scripts')
     {{-- script end --}}
 </body>
