@@ -42,9 +42,8 @@ class SliderController extends Controller
             // simpan gambar
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
-                $filename = $file->getClientOriginalName();
-                $file->storeAs('public/uploads/slider', $filename);
-                $attributes['image'] = $filename;
+                $upload_file = uploadFile($file, 'slider');
+                $attributes['image'] = $upload_file['image'];
             }
             // simpan
             slider::create($attributes);
@@ -78,13 +77,11 @@ class SliderController extends Controller
             $slider = slider::findOrFail($id);
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
-                $filename = $file->getClientOriginalName();
-                $file->storeAs('public/uploads/slider', $filename);
-                $attributes['image'] = $filename;
+                $upload = uploadFile($file, 'slider');
+                $attributes['image'] = $upload['image'];
                 // setelah berhasil upload, hapus gambar lama
-                if (file_exists(storage_path("app/public/uploads/slider/{$slider->image}"))) {
-                    unlink(storage_path("app/public/uploads/slider/{$slider->image}"));
-                }
+                if ($slider->image)
+                    deleteFile($slider->image);
             }
             $slider->update($attributes);
         } catch (\Exception $e) {
@@ -115,9 +112,8 @@ class SliderController extends Controller
         DB::beginTransaction();
         try {
             // hapus file image
-            if (file_exists(storage_path("app/public/uploads/slider/{$slider->image}"))) {
-                unlink(storage_path("app/public/uploads/slider/{$slider->image}"));
-            }
+            if ($slider->image)
+                deleteFile($slider->image);
             $slider->delete();
         } catch (\Exception $e) {
             DB::rollBack();

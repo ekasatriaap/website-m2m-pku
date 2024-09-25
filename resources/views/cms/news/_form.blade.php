@@ -1,7 +1,6 @@
 <x-form-input-inline :label="__('Judul')" id="title" name="title" :value="old('title', $news->title)" onchange="slugify(this, 'slug')" />
 <x-form-input-inline :label="__('Slug')" id="slug" name="slug" :value="old('slug', $news->slug)" />
-<x-form-image-inline :label="__('Image')" id="image-upload" name="image" :default="$news->image"
-    path="storage/uploads/news/thumbnails" />
+<x-form-image-inline :label="__('Image')" id="image-upload" name="image" :default="$news->thumbnail" />
 @if (!accountIsAdmin())
     <x-form-select-inline :label="__('Bidang')" id="bidang" name="id_bidang" :options="$bidangs" :value="old('id_bidang', $news->id_bidang)"
         placeholder="Pilih Bidang" />

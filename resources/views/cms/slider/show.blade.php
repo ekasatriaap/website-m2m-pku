@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-4">
-        <img src="{{ $slider->image ? asset("storage/uploads/slider/{$slider->image}") : asset('assets/img/no-photo.jpg') }}"
+        <img src="{{ $slider->image ? getFileUpload($slider->image) : asset('assets/img/no-photo.jpg') }}"
             class="img-fluid">
     </div>
     <div class="col-md-8">

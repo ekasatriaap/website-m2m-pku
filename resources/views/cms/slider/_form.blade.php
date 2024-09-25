@@ -1,6 +1,6 @@
 <x-form-input :label="__('Judul')" id="title" name="title" :value="old('title', $slider->title)" onchange="slugify(this, 'slug')" />
 <x-form-textarea :label="__('Deskripsi')" class="summernote-simple" id="description" name="description" :value="old('description', $slider->description)" />
-<x-form-image :label="__('Image')" id="image-upload" name="image" :default="$slider->image" path="storage/uploads/slider" />
+<x-form-image :label="__('Image')" id="image-upload" name="image" :default="$slider->image" />
 
 <script>
     // Image Preview

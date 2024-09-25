@@ -42,9 +42,8 @@ class GalleryController extends Controller
             // simpan gambar
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
-                $filename = $file->getClientOriginalName();
-                $file->storeAs('public/uploads/gallery', $filename);
-                $attributes['image'] = $filename;
+                $upload_file = uploadFile($file, 'gallery');
+                $attributes['image'] = $upload_file['image'];
             }
             // simpan
             Gallery::create($attributes);
@@ -78,13 +77,11 @@ class GalleryController extends Controller
             $gallery = Gallery::findOrFail($id);
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
-                $filename = $file->getClientOriginalName();
-                $file->storeAs('public/uploads/gallery', $filename);
-                $attributes['image'] = $filename;
+                $upload = uploadFile($file, 'gallery');
+                $attributes['image'] = $upload['image'];
                 // setelah berhasil upload, hapus gambar lama
-                if (file_exists(storage_path("app/public/uploads/gallery/{$gallery->image}"))) {
-                    unlink(storage_path("app/public/uploads/gallery/{$gallery->image}"));
-                }
+                if ($gallery->image)
+                    deleteFile($gallery->image);
             }
             $gallery->update($attributes);
         } catch (\Exception $e) {
@@ -115,9 +112,8 @@ class GalleryController extends Controller
         DB::beginTransaction();
         try {
             // hapus file image
-            if (file_exists(storage_path("app/public/uploads/gallery/{$gallery->image}"))) {
-                unlink(storage_path("app/public/uploads/gallery/{$gallery->image}"));
-            }
+            if ($gallery->image)
+                deleteFile($gallery->image);
             $gallery->delete();
         } catch (\Exception $e) {
             DB::rollBack();

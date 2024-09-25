@@ -44,9 +44,18 @@ if (!function_exists('getMenu')) {
           "icon" => "fas fa-newspaper",
         ],
         [
-          "name" => "Galeri",
-          "url" => "cms.gallery.index",
+          "name" => "Media",
           "icon" => "fas fa-images",
+          "child" => [
+            [
+              "name" => "Galeri",
+              "url" => "cms.gallery.index",
+            ],
+            [
+              "name" => "Video",
+              "url" => "cms.video.index",
+            ]
+          ]
         ],
         [
           "name" => "Setting",

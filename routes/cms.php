@@ -6,6 +6,7 @@ use App\Http\Controllers\Cms\NewsController;
 use App\Http\Controllers\Cms\ProfileController;
 use App\Http\Controllers\Cms\SliderController;
 use App\Http\Controllers\Cms\UserController;
+use App\Http\Controllers\Cms\VideoController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("cms/")->middleware("auth")->group(function () {
@@ -56,6 +57,15 @@ Route::prefix("cms/")->middleware("auth")->group(function () {
       'update' => 'cms.gallery.update',
       'show' => 'cms.gallery.show',
       'destroy' => 'cms.gallery.destroy',
+    ]);
+
+    Route::resource("video", VideoController::class)->except(["show"])->names([
+      'index' => 'cms.video.index',
+      'create' => 'cms.video.create',
+      'store' => 'cms.video.store',
+      'edit' => 'cms.video.edit',
+      'update' => 'cms.video.update',
+      'destroy' => 'cms.video.destroy',
     ]);
 
     Route::prefix("settings")->group(function () {

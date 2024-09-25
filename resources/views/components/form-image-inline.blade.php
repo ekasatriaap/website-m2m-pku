@@ -6,7 +6,7 @@
     <div class="col-sm-12 col-md-7">
         <div id="image-preview" class="image-preview"
             @if ($attributes->has('default') && !empty($attributes->get('default'))) @php
-                    $get_path = "{$attributes['path']}/{$attributes['default']}";
+                    $get_path = "storage/uploads/{$default}";
                     if (file_exists(public_path($get_path))) {
                       $get_content = file_get_contents(public_path("$get_path"));
                       $finfo = finfo_open(FILEINFO_MIME_TYPE);

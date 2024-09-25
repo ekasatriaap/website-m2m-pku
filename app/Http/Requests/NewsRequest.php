@@ -24,7 +24,7 @@ class NewsRequest extends FormRequest
         return [
             "title" => "string|max:255" . ($this->input("status") != 'draft' ? '|required' : ''),
             "slug" => "string|max:255|unique:news,slug," . ($id ?? '') . ($this->input("status") != 'draft' ? '|required' : ''),
-            "content" => "string" . ($this->input("status") != 'draft' ? '|required' : ''),
+            "content" => ($this->input("status") != 'draft' ? '|required' : ''),
             'image' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
             "id_bidang" => (!accountIsAdmin() ? "required|exists:bidangs,id" : ''),
             "status" => (!accountIsAdmin() ? "required|string|in:publish,draft,submission,reject" : '')

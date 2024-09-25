@@ -35,7 +35,8 @@
             "app/Helpers/constant_helper.php",
             "app/Helpers/function_helper.php",
             "app/Helpers/account_helper.php",
-            "app/Helpers/menu_helper.php"
+            "app/Helpers/menu_helper.php",
+            "app/Helpers/file_helper.php"
         ]
     },
     "autoload-dev": {

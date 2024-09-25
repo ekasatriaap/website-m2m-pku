@@ -50,13 +50,9 @@ class NewsController extends Controller
                 $attributes['status'] = News::STATUS_SUBMISSION;
             }
             if ($request->hasFile('image')) {
-                $manager = new ImageManager(new Driver());
-                $file = $request->file('image');
-                $filename = $file->getClientOriginalName();
-                $file->storeAs('public/uploads/news/originals', $filename);
-                $thumbnail = $manager->read($file->getRealPath())->scale(300, 300);
-                $thumbnail->save(storage_path("app/public/uploads/news/thumbnails/{$filename}"));
-                $attributes['image'] = $filename;
+                $upload_file = uploadFile($request->file('image'), 'news', true);
+                $attributes['image'] = $upload_file['image'];
+                $attributes['thumbnail'] = $upload_file['thumbnail'];
             }
             News::create($attributes);
         } catch (\Exception $e) {
@@ -94,20 +90,14 @@ class NewsController extends Controller
         try {
             $news = News::findOrFail($id);
             if ($request->hasFile('image')) {
-                $manager = new ImageManager(new Driver());
-                $file = $request->file('image');
-                $filename = $file->getClientOriginalName();
-                $file->storeAs("public/uploads/news/originals/", $filename);
-                $thumbnail = $manager->read($file->getRealPath())->scale(300, 300);
-                $thumbnail->save(storage_path("app/public/uploads/news/thumbnails/{$filename}"));
-                $attributes['image'] = $filename;
+                $upload_file = uploadFile($request->file('image'), 'news', true);
+                $attributes['image'] = $upload_file['image'];
+                $attributes['thumbnail'] = $upload_file['thumbnail'];
                 // setelah berhasil upload, hapus gambar lama
-                if (file_exists(storage_path("app/public/uploads/news/originals/{$news->image}"))) {
-                    unlink(storage_path("app/public/uploads/news/originals/{$news->image}"));
-                }
-                if (file_exists(storage_path("app/public/uploads/news/thumbnails/{$news->image}"))) {
-                    unlink(storage_path("app/public/uploads/news/thumbnails/{$news->image}"));
-                }
+                if ($news->image)
+                    deleteFile($news->image);
+                if ($news->thumbnail)
+                    deleteFile($news->thumbnail);
             }
             $news->update($attributes);
         } catch (\Exception $e) {
@@ -138,12 +128,10 @@ class NewsController extends Controller
         DB::beginTransaction();
         try {
             // hapus file image
-            if (file_exists(storage_path("app/public/uploads/news/originals/{$news->image}"))) {
-                unlink(storage_path("app/public/uploads/news/originals/{$news->image}"));
-            }
-            if (file_exists(storage_path("app/public/uploads/news/thumbnails/{$news->image}"))) {
-                unlink(storage_path("app/public/uploads/news/thumbnails/{$news->image}"));
-            }
+            if ($news->image)
+                deleteFile($news->image);
+            if ($news->thumbnail)
+                deleteFile($news->thumbnail);
             $news->delete();
         } catch (\Exception $e) {
             DB::rollBack();

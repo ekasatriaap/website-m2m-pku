@@ -16,6 +16,7 @@ class News extends Model
         'slug',
         'content',
         'image',
+        'thumbnail',
         'created_by',
         'id_bidang',
         'status'

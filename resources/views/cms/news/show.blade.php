@@ -1,7 +1,6 @@
 <div class="row">
     <div class="col-md-4">
-        <img src="{{ $news->image ? asset("storage/uploads/news/thumbnails/{$news->image}") : asset('assets/img/no-photo.jpg') }}"
-            class="img-fluid">
+        <img src="{{ $news->image ? getFileUpload($news->image) : asset('assets/img/no-photo.jpg') }}" class="img-fluid">
     </div>
     <div class="col-md-8">
         <h2>{{ $news->title }}</h2>
