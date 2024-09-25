@@ -47,6 +47,16 @@ if (!function_exists('getMenu')) {
           "name" => "Galeri",
           "url" => "cms.gallery.index",
           "icon" => "fas fa-images",
+        ],
+        [
+          "name" => "Setting",
+          "icon" => "fas fa-cog",
+          "child" => [
+            [
+              "name" => "Sliders",
+              "url" => "cms.slider.index",
+            ]
+          ]
         ]
       ];
     }

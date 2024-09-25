@@ -4,6 +4,7 @@ use App\Http\Controllers\Cms\BidangController;
 use App\Http\Controllers\Cms\GalleryController;
 use App\Http\Controllers\Cms\NewsController;
 use App\Http\Controllers\Cms\ProfileController;
+use App\Http\Controllers\Cms\SliderController;
 use App\Http\Controllers\Cms\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -56,5 +57,17 @@ Route::prefix("cms/")->middleware("auth")->group(function () {
       'show' => 'cms.gallery.show',
       'destroy' => 'cms.gallery.destroy',
     ]);
+
+    Route::prefix("settings")->group(function () {
+      Route::resource("slider", SliderController::class)->names([
+        'index' => 'cms.slider.index',
+        'create' => 'cms.slider.create',
+        'store' => 'cms.slider.store',
+        'edit' => 'cms.slider.edit',
+        'update' => 'cms.slider.update',
+        'show' => 'cms.slider.show',
+        'destroy' => 'cms.slider.destroy',
+      ]);
+    });
   });
 });
