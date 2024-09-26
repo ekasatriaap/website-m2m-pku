@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\Cms;
 
-use App\DataTables\SliderDataTable;
+use App\DataTables\TabloidDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SliderRequest;
-use App\Models\Slider;
+use App\Http\Requests\TabloidRequest;
+use App\Models\Tabloid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class SliderController extends Controller
+class TabloidController extends Controller
 {
-    protected $view = "cms.slider";
+    protected $view = "cms.tabloid";
 
-    public function index(SliderDataTable $dataTable)
+    public function index(TabloidDataTable $dataTable)
     {
         $data = [
-            "title" => "Sliders",
+            'title' => "Tabloid",
         ];
 
         return $dataTable->render("{$this->view}.index", $data);
@@ -24,34 +24,31 @@ class SliderController extends Controller
 
     public function create()
     {
-
+        notAjaxAbort();
         $data = [
-            "slider" => new Slider()
+            'title' => "Tabloid",
+            "tabloid" => new Tabloid(),
         ];
 
         return view("{$this->view}.create", $data);
     }
 
-    public function store(SliderRequest $request)
+    public function store(TabloidRequest $request)
     {
         notAjaxAbort();
         $attributes = $request->validated();
-
         DB::beginTransaction();
         try {
-            // simpan gambar
-            if ($request->hasFile('image')) {
-                $file = $request->file('image');
-                $upload_file = uploadFile($file, 'slider');
-                $attributes['image'] = $upload_file['file'];
+            if ($request->has("file")) {
+                $file = $request->file("file");
+                $upload = uploadFile($file, "tabloid");
+                $attributes["file"] = $upload["file"];
             }
-            // simpan
-            slider::create($attributes);
+            Tabloid::create($attributes);
         } catch (\Exception $e) {
             DB::rollBack();
             return responseFail(GAGAL_SIMPAN);
         }
-
         DB::commit();
         return responseSuccess(BERHASIL_SIMPAN);
     }
@@ -59,36 +56,35 @@ class SliderController extends Controller
     public function edit($id)
     {
         notAjaxAbort();
-        $id = decode($id);
-        $slider = slider::findOrFail($id);
         $data = [
-            "slider" => $slider
+            'title' => "Tabloid",
+            "tabloid" => Tabloid::findOrFail(decode($id)),
         ];
         return view("{$this->view}.edit", $data);
     }
 
-    public function update(SliderRequest $request, $id)
+    public function update(TabloidRequest $request, $id)
     {
         notAjaxAbort();
         $id = decode($id);
         $attributes = $request->validated();
         DB::beginTransaction();
         try {
-            $slider = slider::findOrFail($id);
-            if ($request->hasFile('image')) {
-                $file = $request->file('image');
-                $upload = uploadFile($file, 'slider');
-                $attributes['image'] = $upload['file'];
-                // setelah berhasil upload, hapus gambar lama
-                if ($slider->image)
-                    deleteFile($slider->image);
+            $tabloid = Tabloid::findOrFail($id);
+            if ($request->has("file")) {
+                $file = $request->file("file");
+                $upload = uploadFile($file, "tabloid");
+                $attributes["file"] = $upload["file"];
+
+                if ($tabloid->file) {
+                    deleteFile($tabloid->file);
+                }
             }
-            $slider->update($attributes);
+            $tabloid->update($attributes);
         } catch (\Exception $e) {
             DB::rollBack();
             return responseFail(GAGAL_SIMPAN);
         }
-
         DB::commit();
         return responseSuccess(BERHASIL_SIMPAN);
     }
@@ -96,10 +92,9 @@ class SliderController extends Controller
     public function show($id)
     {
         notAjaxAbort();
-        $id = decode($id);
-        $slider = slider::findOrFail($id);
         $data = [
-            "slider" => $slider
+            'title' => "Tabloid",
+            "tabloid" => Tabloid::findOrFail(decode($id)),
         ];
         return view("{$this->view}.show", $data);
     }
@@ -108,13 +103,13 @@ class SliderController extends Controller
     {
         notAjaxAbort();
         $id = decode($id);
-        $slider = slider::findOrFail($id);
+        $tabloid = Tabloid::findOrFail($id);
         DB::beginTransaction();
         try {
-            // hapus file image
-            if ($slider->image)
-                deleteFile($slider->image);
-            $slider->delete();
+            // hapus file
+            if ($tabloid->file)
+                deleteFile($tabloid->file);
+            $tabloid->delete();
         } catch (\Exception $e) {
             DB::rollBack();
             return responseFail(GAGAL_HAPUS);

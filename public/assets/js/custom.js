@@ -136,7 +136,7 @@ const handleError = (err) => {
   if (err.status == 422) {
     iziToast.error({
       title: "Oops..",
-      message: "Periksa kembali form yang bertanda merah!",
+      message: "Periksa kembali inputan anda!",
       position: "topRight",
     });
     return false;

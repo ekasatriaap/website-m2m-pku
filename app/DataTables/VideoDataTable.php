@@ -80,6 +80,6 @@ class VideoDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Gallery_' . date('YmdHis');
+        return 'Video_' . date('YmdHis');
     }
 }

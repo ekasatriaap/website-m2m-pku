@@ -2,7 +2,7 @@
     @if ($attributes->has('label'))
         <x-form-label :label="$label" :for="$id" />
     @endif
-    <div id="image-preview" class="image-preview"
+    <div id="image-preview" {!! $attributes->merge(['class' => 'image-preview']) !!}
         @if ($attributes->has('default') && !empty($attributes->get('default'))) @php
                     $get_path = "storage/uploads/{$default}";
                     if (file_exists(public_path($get_path))) {

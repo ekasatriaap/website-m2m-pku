@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SliderRequest extends FormRequest
+class TabloidRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,18 +22,18 @@ class SliderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
-            'image' => 'file|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'description' => 'nullable|string',
+            "title" => "required|string|max:255",
+            "description" => "string|nullable",
+            "file" => "required|file|mimes:pdf,jpg,png,jpeg|max:2048",
         ];
     }
 
-    public function attributes(): array
+    public function attributes()
     {
         return [
-            'title' => 'Judul',
-            'image' => 'Gambar',
-            'description' => 'Deskripsi',
+            "title" => "Judul",
+            "description" => "Deskripsi",
+            "file" => "File",
         ];
     }
 }

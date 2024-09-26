@@ -5,6 +5,7 @@ use App\Http\Controllers\Cms\GalleryController;
 use App\Http\Controllers\Cms\NewsController;
 use App\Http\Controllers\Cms\ProfileController;
 use App\Http\Controllers\Cms\SliderController;
+use App\Http\Controllers\Cms\TabloidController;
 use App\Http\Controllers\Cms\UserController;
 use App\Http\Controllers\Cms\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,16 @@ Route::prefix("cms/")->middleware("auth")->group(function () {
       'update' => 'cms.gallery.update',
       'show' => 'cms.gallery.show',
       'destroy' => 'cms.gallery.destroy',
+    ]);
+
+    Route::resource('tabloid', TabloidController::class)->names([
+      'index' => 'cms.tabloid.index',
+      'create' => 'cms.tabloid.create',
+      'store' => 'cms.tabloid.store',
+      'edit' => 'cms.tabloid.edit',
+      'update' => 'cms.tabloid.update',
+      'show' => 'cms.tabloid.show',
+      'destroy' => 'cms.tabloid.destroy',
     ]);
 
     Route::resource("video", VideoController::class)->except(["show"])->names([

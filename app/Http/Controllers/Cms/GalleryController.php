@@ -43,7 +43,7 @@ class GalleryController extends Controller
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
                 $upload_file = uploadFile($file, 'gallery');
-                $attributes['image'] = $upload_file['image'];
+                $attributes['image'] = $upload_file['file'];
             }
             // simpan
             Gallery::create($attributes);
@@ -78,7 +78,7 @@ class GalleryController extends Controller
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
                 $upload = uploadFile($file, 'gallery');
-                $attributes['image'] = $upload['image'];
+                $attributes['image'] = $upload['file'];
                 // setelah berhasil upload, hapus gambar lama
                 if ($gallery->image)
                     deleteFile($gallery->image);

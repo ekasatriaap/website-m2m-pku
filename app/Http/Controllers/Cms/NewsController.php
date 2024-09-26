@@ -51,7 +51,7 @@ class NewsController extends Controller
             }
             if ($request->hasFile('image')) {
                 $upload_file = uploadFile($request->file('image'), 'news', true);
-                $attributes['image'] = $upload_file['image'];
+                $attributes['image'] = $upload_file['file'];
                 $attributes['thumbnail'] = $upload_file['thumbnail'];
             }
             News::create($attributes);
@@ -91,7 +91,7 @@ class NewsController extends Controller
             $news = News::findOrFail($id);
             if ($request->hasFile('image')) {
                 $upload_file = uploadFile($request->file('image'), 'news', true);
-                $attributes['image'] = $upload_file['image'];
+                $attributes['image'] = $upload_file['file'];
                 $attributes['thumbnail'] = $upload_file['thumbnail'];
                 // setelah berhasil upload, hapus gambar lama
                 if ($news->image)

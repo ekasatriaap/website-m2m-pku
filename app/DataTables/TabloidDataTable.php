@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Slider;
+use App\Models\Tabloid;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,9 +12,9 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class SliderDataTable extends DataTable
+class TabloidDataTable extends DataTable
 {
-    protected $view = 'cms.slider';
+    protected $view = 'cms.tabloid';
     /**
      * Build the DataTable class.
      *
@@ -22,7 +22,7 @@ class SliderDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        $primaryKey = (new Slider())->getKeyName();
+        $primaryKey = (new Tabloid())->getKeyName();
         return (new EloquentDataTable($query))
             ->addColumn('aksi', function ($row) use ($primaryKey) {
                 $data['id'] = encode($row->$primaryKey);
@@ -36,7 +36,7 @@ class SliderDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Slider $model): QueryBuilder
+    public function query(Tabloid $model): QueryBuilder
     {
         return $model->select('id', 'title', 'description', 'created_at');
     }
@@ -80,6 +80,6 @@ class SliderDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Slider_' . date('YmdHis');
+        return 'Tabloid_' . date('YmdHis');
     }
 }

@@ -1,18 +1,10 @@
 <x-app-layout :title="$title">
-    @push('add-styles')
-        <style>
-            .form-image-slider {
-                width: 100%;
-                height: 300px;
-            }
-        </style>
-    @endpush
     <x-row>
         <div class="col-md-12">
             <x-card :title="$title">
                 @slot('toolbar')
                     <button type="button" class="btn btn-sm btn-primary" data-title="Tambah Gambar"
-                        data-url="{{ route('cms.slider.create') }}" onclick="actionModalData(this)">
+                        data-url="{{ route('cms.tabloid.create') }}" onclick="actionModalData(this)">
                         <i class="fas fa-plus"></i> Tambah
                     </button>
                 @endslot

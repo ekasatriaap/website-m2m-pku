@@ -44,6 +44,11 @@ if (!function_exists('getMenu')) {
           "icon" => "fas fa-newspaper",
         ],
         [
+          "name" => "Tabloid",
+          "url" => "cms.tabloid.index",
+          "icon" => "fas fa-newspaper",
+        ],
+        [
           "name" => "Media",
           "icon" => "fas fa-images",
           "child" => [

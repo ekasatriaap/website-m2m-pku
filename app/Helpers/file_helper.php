@@ -19,8 +19,7 @@ if (!function_exists("uploadFile")) {
     if ($thumbnail) {
       storeThumbnail($file, $path, $filename);
     }
-    $attributes['image'] = $filename;
-    $data['image'] = "{$path}/{$filename}";
+    $data['file'] = "{$path}/{$filename}";
     if ($thumbnail) {
       $data['thumbnail'] = "{$path}/thumbnails/{$filename}";
     }
