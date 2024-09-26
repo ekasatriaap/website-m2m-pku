@@ -1,8 +1,9 @@
 <div class="form-group">
     @if ($attributes->has('label'))
-        <x-form-label :label="$label" :for="$id" />
+        <x-form-label :label="$label" :for="$attributes->has('id') ? $id : ''" />
     @endif
-    <div id="image-preview" {!! $attributes->merge(['class' => 'image-preview']) !!}
+    <div {!! $attributes->merge(['class' => 'image-preview']) !!}
+        id="{{ $attributes->has('preview_id') ? $attributes->get('preview_id') : 'image-preview' }}"
         @if ($attributes->has('default') && !empty($attributes->get('default'))) @php
                     $get_path = "storage/uploads/{$default}";
                     if (file_exists(public_path($get_path))) {
@@ -15,14 +16,15 @@
                     }
                 @endphp
                 style="background-image: url(data:image/{{ $extension ?? '' }};base64,{{ $imageData ?? '' }}); background-size: cover; background-position: center center;" @endif>
-        <label for="{{ $id }}" id="image-label">
+        <label for="{{ $attributes->has('id') ? $id : '' }}" id="image-label">
             @if ($attributes->has('default') && !empty($attributes->get('default')))
                 Change Image
             @else
                 Choose Image
             @endif
         </label>
-        <input type="file" name="{{ $name }}" id="{{ $id }}" />
+        <input type="file" name="{{ $name }}"
+            id="{{ $attributes->has('input_id') ? $attributes->get('input_id') : 'image-upload' }}" />
     </div>
     @if ($errors->has($name))
         <x-input-error :messages="$errors->get($name)" class="mt-2" />

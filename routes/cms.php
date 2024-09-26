@@ -8,6 +8,7 @@ use App\Http\Controllers\Cms\SliderController;
 use App\Http\Controllers\Cms\TabloidController;
 use App\Http\Controllers\Cms\UserController;
 use App\Http\Controllers\Cms\VideoController;
+use App\Http\Controllers\Cms\WebSettingController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("cms/")->middleware("auth")->group(function () {
@@ -89,6 +90,10 @@ Route::prefix("cms/")->middleware("auth")->group(function () {
         'show' => 'cms.slider.show',
         'destroy' => 'cms.slider.destroy',
       ]);
+      Route::controller(WebSettingController::class)->group(function () {
+        Route::get('/web-setting', 'edit')->name('cms.web_setting.edit');
+        Route::put('/web-setting', 'update')->name('cms.web_setting.update');
+      });
     });
   });
 });

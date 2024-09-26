@@ -69,6 +69,10 @@ if (!function_exists('getMenu')) {
             [
               "name" => "Sliders",
               "url" => "cms.slider.index",
+            ],
+            [
+              "name" => "Web Setting",
+              "url" => "cms.web_setting.edit",
             ]
           ]
         ]
