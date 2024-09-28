@@ -51,8 +51,13 @@ class WebSettingSeeder extends Seeder
             ],
             [
                 "param" => "phone",
-                "value" => "0821 1234 5678",
+                "value" => "082112345678",
                 "description" => "Nomor Telepon Sekolah",
+            ],
+            [
+                "param" => "whatsapp",
+                "value" => "082112345678",
+                "description" => "Nomor Whatsapp Sekolah",
             ],
             [
                 "param" => "email",
@@ -89,6 +94,16 @@ class WebSettingSeeder extends Seeder
                 "value" => "-0.5228",
                 "description" => "Latitude Sekolah",
             ],
+            [
+                "param" => "page_header",
+                "value" => "",
+                "description" => "Header Halaman",
+            ],
+            [
+                'param' => "parallax",
+                'value' => "",
+                'description' => "Parallax Halaman",
+            ]
         ])->each(function ($data) {
             $today = [
                 'created_at' => now(),

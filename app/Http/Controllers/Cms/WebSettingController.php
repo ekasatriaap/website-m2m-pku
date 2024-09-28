@@ -43,6 +43,24 @@ class WebSettingController extends Controller
                 }
                 DB::table('web_settings')->where('param', 'favicon')->update(['value' => $upload_favicon['file']]);
             }
+            if ($request->hasFile('page_header')) {
+                $file = $request->file('page_header');
+                $upload_page_header = uploadFile($file, 'web-setting');
+                $page_header = WebSetting::where('param', 'page_header')->get()->first();
+                if ($page_header->value) {
+                    deleteFile($page_header->value);
+                }
+                DB::table('web_settings')->where('param', 'page_header')->update(['value' => $upload_page_header['file']]);
+            }
+            if ($request->hasFile('parallax')) {
+                $file = $request->file('parallax');
+                $upload_parallax = uploadFile($file, 'web-setting');
+                $parallax = WebSetting::where('param', 'parallax')->get()->first();
+                if ($parallax->value) {
+                    deleteFile($parallax->value);
+                }
+                DB::table('web_settings')->where('param', 'parallax')->update(['value' => $upload_parallax['file']]);
+            }
             foreach ($request->post("setting") as $key => $item) {
                 DB::table('web_settings')->where('param', $key)->update(['value' => $item]);
             }

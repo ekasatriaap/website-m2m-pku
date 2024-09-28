@@ -4,7 +4,7 @@
             @if ($title)
                 <div class="modal-header">
                     <h3 class="modal-title">{{ $title }}</h3>
-                    <div class="close" data-dismiss="modal" aria-label="Close">
+                    <div class="close" data-dismiss="modal" aria-label="Close" onclick="DRSKMODAL.hide()">
                         <span arial-hidden="true">
                             x
                         </span>

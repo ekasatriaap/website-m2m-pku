@@ -430,3 +430,64 @@ const slugify = (form, target) => {
   let slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
   $(`#${target}`).val(slug);
 }
+
+const configUploadPreview = (id_input, id_preview) => {
+  $.uploadPreview({
+    input_field: `#${id_input}`, // Default: .image-upload
+    preview_box: `#${id_preview}`, // Default: .image-preview
+    label_field: "#image-label", // Default: .image-label
+    label_default: "Choose File", // Default: Choose File
+    label_selected: "Change File", // Default: Change File
+    no_label: false, // Default: false
+    success_callback: null // Default: null
+  });
+}
+
+const configSimpleSummernote = (className) => {
+  $(`.${className}`).summernote({
+    height: 200,
+    toolbar: [
+      ['font', ['bold', 'italic', 'underline', 'clear']],
+      ['strike', ['strikethrough']],
+      ['para', ['paragraph']],
+    ],
+  });
+}
+
+// Fungsi untuk membatasi input hanya angka dengan jumlah digit maksimal
+function initializeNumberOnlyInputs() {
+  document.querySelectorAll('input[data-number-only]').forEach(function (input) {
+    input.addEventListener('input', function (e) {
+      let value = this.value.replace(/[^0-9]/g, '');
+      let maxDigits = this.getAttribute('data-max-digits');
+
+      if (maxDigits && value.length > maxDigits) {
+        value = value.slice(0, maxDigits);
+      }
+
+      this.value = value;
+    });
+
+    input.addEventListener('keypress', function (e) {
+      if (!/[0-9]/.test(e.key)) {
+        e.preventDefault();
+      }
+
+      let maxDigits = this.getAttribute('data-max-digits');
+      if (maxDigits && this.value.length >= maxDigits) {
+        e.preventDefault();
+      }
+    });
+  });
+}
+
+// Panggil fungsi ini ketika dokumen sudah siap
+document.addEventListener('DOMContentLoaded', function () {
+  initializeNumberOnlyInputs();
+});
+
+// Jika Anda menggunakan Ajax atau memuat konten dinamis, panggil fungsi ini setelah memuat konten
+// Contoh: setelah memuat modal
+document.addEventListener('shown.bs.modal', function () {
+  initializeNumberOnlyInputs();
+});

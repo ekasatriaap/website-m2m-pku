@@ -2,20 +2,16 @@
 
 namespace App\DataTables;
 
-use App\Models\News;
+use App\Models\Pages;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class NewsDataTable extends DataTable
+class PagesDataTable extends DataTable
 {
-
-    protected $view = 'cms.news';
+    protected $view = 'cms.pages';
     /**
      * Build the DataTable class.
      *
@@ -23,9 +19,10 @@ class NewsDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
+        $primaryKey = (new Pages())->getKeyName();
         return (new EloquentDataTable($query))
-            ->addColumn('aksi', function ($row) {
-                $data['data'] = $row;
+            ->addColumn('aksi', function ($row) use ($primaryKey) {
+                $data['id'] = encode($row->$primaryKey);
 
                 return view("{$this->view}.button", $data);
             })
@@ -38,18 +35,9 @@ class NewsDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(News $model): QueryBuilder
+    public function query(Pages $model): QueryBuilder
     {
-        return $model->with(['bidang', 'user'])
-            ->when(accountIsAdmin(), fn($query) => $query->where('created_by', accountLogin()->id))
-            ->when(!accountIsAdmin(), function ($query) {
-                return $query->where(function ($q) {
-                    $q->where('created_by', accountLogin()->id)
-                        ->orWhereHas('user', function ($q) {
-                            $q->where('level', 'admin');
-                        });
-                });
-            });
+        return $model->select('id', 'title', 'created_at', 'created_at');
     }
 
     /**
@@ -75,9 +63,6 @@ class NewsDataTable extends DataTable
             Column::make('created_at')->hidden()->searchable(false),
             Column::make('DT_RowIndex')->name("id")->title("No")->searchable(false)->width(50)->orderable(false)->addClass('text-center'),
             Column::make('title')->title("Judul"),
-            Column::make('bidang.nama_bidang')->title("Bidang")->width(250),
-            Column::make('user.name')->title("Penulis")->width(250),
-            Column::make('status')->width(200)->addClass('text-center'),
             Column::computed('aksi')
                 ->title('')
                 ->exportable(false)
@@ -93,6 +78,6 @@ class NewsDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'News_' . date('YmdHis');
+        return 'Pages_' . date('YmdHis');
     }
 }
