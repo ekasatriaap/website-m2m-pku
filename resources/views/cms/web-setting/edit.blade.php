@@ -1,4 +1,17 @@
 <x-app-layout :title="$title">
+    @push('add-styles')
+        <style>
+            .form_image_header {
+                width: 100%;
+                height: 256px;
+            }
+
+            .form_image_parallax {
+                width: 100%;
+                height: 512px;
+            }
+        </style>
+    @endpush
     <x-row>
         <div class="col-md-12">
             <x-card :title="$title">
@@ -12,10 +25,12 @@
                                 id="description" :value="$settings['description']['value']" />
                             <x-form-input :label="__('Tagline')" name="setting[tagline]" id="tagline" :value="$settings['tagline']['value']" />
                             <x-form-input :label="__('Alamat')" name="setting[address]" id="address" :value="$settings['address']['value']" />
-                            <x-form-input type="number" :label="__('Kode Pos')" name="setting[postcode]" id="postcode"
-                                :value="$settings['postcode']['value']" />
+                            <x-form-input :label="__('Kode Pos')" name="setting[postcode]" id="postcode" :value="$settings['postcode']['value']"
+                                data-number-only data-max-digits="5" />
                             <x-form-input type="tel" :label="__('Nomor telepon')" name="setting[phone]" id="phone"
-                                :value="$settings['phone']['value']" />
+                                :value="$settings['phone']['value']" data-number-only data-max-digits="13" />
+                            <x-form-input type="tel" :label="__('Nomor whatsapp')" name="setting[whatsapp]" id="whatsapp"
+                                :value="$settings['whatsapp']['value']" data-number-only data-max-digits="13" />
                             <x-form-input type="email" :label="__('Email')" name="setting[email]" id="email"
                                 :value="$settings['email']['value']" />
                             <x-form-input :label="__('Facebook')" name="setting[facebook]" id="facebook"
@@ -32,10 +47,16 @@
                                 :value="$settings['latitude']['value']" />
                         </div>
                         <div class="col-6">
-                            <x-form-image :label="__('Logo Sekolah')" preview_id="image-preview-logo" input_id="image-input-logo"
-                                name="logo" :default="$settings['logo']['value']" />
-                            <x-form-image :label="__('Favicon')" preview_id="image-preview-favicon"
-                                input_id="image-input-favicon" name="favicon" :default="$settings['favicon']['value']" />
+                            <x-form-image :label="__('Logo Sekolah')" previewId="image-preview-logo" inputId="image-input-logo"
+                                id="logo" name="logo" :default="$settings['logo']['value']" />
+                            <x-form-image :label="__('Favicon')" previewId="image-preview-favicon" id="favicon"
+                                inputId="image-input-favicon" name="favicon" :default="$settings['favicon']['value']" />
+                            <x-form-image :label="__('Header Halaman')" name="page_header" class="form_image_header"
+                                previewId="image-preview-header" inputId="image-input-header" id="page_header"
+                                :default="$settings['page_header']['value']" />
+                            <x-form-image :label="__('Parallax Halaman')" name="parallax" class="form_image_header"
+                                previewId="image-preview-parallax" inputId="image-input-parallax" id="parallax"
+                                :default="$settings['parallax']['value']" />
                         </div>
                     </x-row>
                     <x-form-button />
@@ -45,37 +66,10 @@
     </x-row>
     @push('add-scripts')
         <script>
-            // Image Preview
-            $.uploadPreview({
-                input_field: "#image-input-logo", // Default: .image-upload
-                preview_box: "#image-preview-logo", // Default: .image-preview
-                label_field: "#image-label", // Default: .image-label
-                label_default: "Choose File", // Default: Choose File
-                label_selected: "Change File", // Default: Change File
-                no_label: false, // Default: false
-                success_callback: null // Default: null
-            });
-            // Image Preview
-            $.uploadPreview({
-                input_field: "#image-input-favicon", // Default: .image-upload
-                preview_box: "#image-preview-favicon", // Default: .image-preview
-                label_field: "#image-label", // Default: .image-label
-                label_default: "Choose File", // Default: Choose File
-                label_selected: "Change File", // Default: Change File
-                no_label: false, // Default: false
-                success_callback: null // Default: null
-            });
-            // Summernote
-            $('#default-drsk-modal').on('shown.bs.modal', function() {
-                $('.summernote-simple').summernote({
-                    height: 200,
-                    toolbar: [
-                        ['font', ['bold', 'italic', 'underline', 'clear']],
-                        ['strike', ['strikethrough']],
-                        ['para', ['paragraph']],
-                    ],
-                });
-            });
+            configUploadPreview('image-input-logo', 'image-preview-logo');
+            configUploadPreview('image-input-favicon', 'image-preview-favicon');
+            configUploadPreview('image-input-header', 'image-preview-header');
+            configUploadPreview('image-input-parallax', 'image-preview-parallax');
         </script>
     @endpush
 </x-app-layout>

@@ -11,13 +11,6 @@
 <script>
     // Summernote
     $('#default-drsk-modal').on('shown.bs.modal', function() {
-        $('.summernote-simple').summernote({
-            height: 200,
-            toolbar: [
-                ['font', ['bold', 'italic', 'underline', 'clear']],
-                ['strike', ['strikethrough']],
-                ['para', ['paragraph']],
-            ],
-        });
+        configSimpleSummernote('summernote-simple');
     });
 </script>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Cms\BidangController;
 use App\Http\Controllers\Cms\GalleryController;
 use App\Http\Controllers\Cms\NewsController;
+use App\Http\Controllers\Cms\PagesController;
 use App\Http\Controllers\Cms\ProfileController;
 use App\Http\Controllers\Cms\SliderController;
 use App\Http\Controllers\Cms\TabloidController;
@@ -78,6 +79,16 @@ Route::prefix("cms/")->middleware("auth")->group(function () {
       'edit' => 'cms.video.edit',
       'update' => 'cms.video.update',
       'destroy' => 'cms.video.destroy',
+    ]);
+
+    Route::resource("pages", PagesController::class)->names([
+      'index' => 'cms.pages.index',
+      'create' => 'cms.pages.create',
+      'store' => 'cms.pages.store',
+      'edit' => 'cms.pages.edit',
+      'update' => 'cms.pages.update',
+      'show' => 'cms.pages.show',
+      'destroy' => 'cms.pages.destroy',
     ]);
 
     Route::prefix("settings")->group(function () {

@@ -1,15 +1,9 @@
-@php
-    $name = $name;
-    if (Str::contains($name, '[')) {
-        $name = str_replace(['[', ']'], ['.', ''], $name);
-    }
-@endphp
 <div class="form-group">
-    @if ($attributes->has('label'))
+    @if ($label)
         <x-form-label :label="$label" :for="$id ?? ''" />
     @endif
-    <input {!! $attributes->merge(['class' => 'form-control' . ($errors->has($name) ? ' is-invalid' : '')]) !!}>
-    @if ($errors->has($name))
-        <x-input-error :messages="$errors->get($name)" class="mt-2" />
-    @endif
+    <input {!! $attributes->merge(['class' => 'form-control' . ($errors->has($errorKey) ? ' is-invalid' : '')]) !!} name="{{ $name }}">
+    @error($errorKey)
+        <x-input-error :messages="$errors->get($errorKey)" class="mt-2" />
+    @enderror
 </div>

@@ -2,25 +2,22 @@
 
 namespace App\Http\Controllers\Cms;
 
-use App\DataTables\NewsDataTable;
+use App\DataTables\PagesDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\NewsRequest;
-use App\Models\Bidang;
-use App\Models\News;
+use App\Http\Requests\PagesRequest;
+use App\Models\Pages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Intervention\Image\Drivers\Gd\Driver;
-use Intervention\Image\ImageManager;
 
-class NewsController extends Controller
+class PagesController extends Controller
 {
-    protected $view = 'cms.news';
+    protected $view = 'cms.pages';
 
-    public function index(NewsDataTable $dataTable)
+    public function index(PagesDataTable $dataTable)
     {
         $data = [
-            "title" => "Berita",
+            "title" => "Halaman",
         ];
 
         return $dataTable->render("{$this->view}.index", $data);
@@ -28,33 +25,23 @@ class NewsController extends Controller
 
     public function create()
     {
-
-        $status = array_combine(News::STATUS, array_map('ucfirst', News::STATUS));
         $data = [
-            "title" => "Tambah Berita",
-            "news" => new News(),
-            "bidangs" => Bidang::all()->pluck("nama_bidang", "id"),
-            "status" => collect($status)
+            "title" => "Tambah Pages",
+            "pages" => new Pages(),
         ];
         return view("{$this->view}.create", $data);
     }
 
-    public function store(NewsRequest $request)
+    public function store(PagesRequest $request)
     {
         $attributes = $request->validated();
         DB::beginTransaction();
         try {
-            $attributes['created_by'] = accountLogin()->id;
-            if (accountIsAdmin()) {
-                $attributes['id_bidang'] = accountLogin()->id_bidang;
-                $attributes['status'] = News::STATUS_SUBMISSION;
-            }
             if ($request->hasFile('image')) {
-                $upload_file = uploadFile($request->file('image'), 'news', true);
+                $upload_file = uploadFile($request->file('image'), 'pages');
                 $attributes['image'] = $upload_file['file'];
-                $attributes['thumbnail'] = $upload_file['thumbnail'];
             }
-            News::create($attributes);
+            Pages::create($attributes);
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('sweet_error', GAGAL_SIMPAN);
@@ -66,13 +53,10 @@ class NewsController extends Controller
     public function edit($id)
     {
         $id = decode($id);
-        $news = News::findOrFail($id);
-        $status = array_combine(News::STATUS, array_map('ucfirst', News::STATUS));
+        $pages = Pages::findOrFail($id);
         $data = [
             "title" => "Edit Berita",
-            "news" => $news,
-            "bidangs" => Bidang::all()->pluck("nama_bidang", "id"),
-            "status" => collect($status)
+            "pages" => $pages,
         ];
         return view("{$this->view}.edit", $data);
     }
@@ -80,7 +64,7 @@ class NewsController extends Controller
     public function update(Request $request, $id)
     {
         $id = decode($id);
-        $requesRule = new NewsRequest();
+        $requesRule = new PagesRequest();
         $validator = Validator::make($request->all(), $requesRule->rules($id), [], $requesRule->attributes());
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -88,18 +72,15 @@ class NewsController extends Controller
         $attributes = $validator->validated();
         DB::beginTransaction();
         try {
-            $news = News::findOrFail($id);
+            $pages = Pages::findOrFail($id);
             if ($request->hasFile('image')) {
-                $upload_file = uploadFile($request->file('image'), 'news', true);
+                $upload_file = uploadFile($request->file('image'), 'pages');
                 $attributes['image'] = $upload_file['file'];
-                $attributes['thumbnail'] = $upload_file['thumbnail'];
                 // setelah berhasil upload, hapus gambar lama
-                if ($news->image)
-                    deleteFile($news->image);
-                if ($news->thumbnail)
-                    deleteFile($news->thumbnail);
+                if ($pages->image)
+                    deleteFile($pages->image);
             }
-            $news->update($attributes);
+            $pages->update($attributes);
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('sweet_error', GAGAL_SIMPAN);
@@ -112,9 +93,9 @@ class NewsController extends Controller
     {
         notAjaxAbort();
         $id = decode($id);
-        $news = News::with(['user', 'bidang'])->findOrFail($id);
+        $pages = Pages::findOrFail($id);
         $data = [
-            "news" => $news
+            "pages" => $pages
         ];
 
         return view("{$this->view}.show", $data);
@@ -124,15 +105,13 @@ class NewsController extends Controller
     {
         notAjaxAbort();
         $id = decode($id);
-        $news = News::findOrFail($id);
+        $pages = Pages::findOrFail($id);
         DB::beginTransaction();
         try {
             // hapus file image
-            if ($news->image)
-                deleteFile($news->image);
-            if ($news->thumbnail)
-                deleteFile($news->thumbnail);
-            $news->delete();
+            if ($pages->image)
+                deleteFile($pages->image);
+            $pages->delete();
         } catch (\Exception $e) {
             DB::rollBack();
             return responseFail(GAGAL_HAPUS);
