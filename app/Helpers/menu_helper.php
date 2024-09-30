@@ -78,6 +78,10 @@ if (!function_exists('getMenu')) {
             [
               "name" => "Web Setting",
               "url" => "cms.web_setting.edit",
+            ],
+            [
+              "name" => "Menu",
+              "url" => "cms.menu.index",
             ]
           ]
         ]

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Cms\BidangController;
 use App\Http\Controllers\Cms\GalleryController;
+use App\Http\Controllers\Cms\MenuController;
 use App\Http\Controllers\Cms\NewsController;
 use App\Http\Controllers\Cms\PagesController;
 use App\Http\Controllers\Cms\ProfileController;
@@ -104,6 +105,17 @@ Route::prefix("cms/")->middleware("auth")->group(function () {
       Route::controller(WebSettingController::class)->group(function () {
         Route::get('/web-setting', 'edit')->name('cms.web_setting.edit');
         Route::put('/web-setting', 'update')->name('cms.web_setting.update');
+      });
+      Route::resource("menu", MenuController::class)->names([
+        'index' => 'cms.menu.index',
+        'create' => 'cms.menu.create',
+        'store' => 'cms.menu.store',
+        'edit' => 'cms.menu.edit',
+        'update' => 'cms.menu.update',
+        'destroy' => 'cms.menu.destroy',
+      ]);
+      Route::controller(MenuController::class)->group(function () {
+        Route::post('/menu/update-order', 'updateOrder')->name('cms.menu.updateOrder');
       });
     });
   });

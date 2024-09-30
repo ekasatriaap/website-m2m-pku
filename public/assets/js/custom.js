@@ -491,3 +491,29 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('shown.bs.modal', function () {
   initializeNumberOnlyInputs();
 });
+
+const submitModalReloadPage = (form) => {
+  ajaxMasterSimpan(form, $(form).attr("action"), "POST")
+    .then((ress) => {
+      if (ress.success) {
+        window.location.reload();
+      }
+    })
+    .catch((err) => {
+      setInvalidFeedBack(err, form);
+    });
+};
+
+const deleteDataReloadPage = (url, sendData = {}, typeDelete = "soft") => {
+  return new Promise((resolve, reject) => {
+    ajaxHapusData(url, sendData, false, typeDelete)
+      .then((success) => {
+        if (success.success) {
+          window.location.reload();
+        }
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};

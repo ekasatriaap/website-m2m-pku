@@ -99,11 +99,6 @@ class WebSettingSeeder extends Seeder
                 "value" => "",
                 "description" => "Header Halaman",
             ],
-            [
-                'param' => "parallax",
-                'value' => "",
-                'description' => "Parallax Halaman",
-            ]
         ])->each(function ($data) {
             $today = [
                 'created_at' => now(),

@@ -54,9 +54,6 @@
                             <x-form-image :label="__('Header Halaman')" name="page_header" class="form_image_header"
                                 previewId="image-preview-header" inputId="image-input-header" id="page_header"
                                 :default="$settings['page_header']['value']" />
-                            <x-form-image :label="__('Parallax Halaman')" name="parallax" class="form_image_header"
-                                previewId="image-preview-parallax" inputId="image-input-parallax" id="parallax"
-                                :default="$settings['parallax']['value']" />
                         </div>
                     </x-row>
                     <x-form-button />
@@ -69,7 +66,6 @@
             configUploadPreview('image-input-logo', 'image-preview-logo');
             configUploadPreview('image-input-favicon', 'image-preview-favicon');
             configUploadPreview('image-input-header', 'image-preview-header');
-            configUploadPreview('image-input-parallax', 'image-preview-parallax');
         </script>
     @endpush
 </x-app-layout>

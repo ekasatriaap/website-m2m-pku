@@ -1,6 +1,6 @@
 <div class="form-group">
     @if ($attributes->has('label'))
-        <label :for="$id" :label="$label"></label>
+        <x-form-label label :for="$id" :label="$label"></x-form-label>
     @endif
     <select {!! $attributes->merge(['class' => 'form-control selectric' . ($errors->has($name) ? ' is-invalid' : '')]) !!}>
         @if ($attributes->has('placeholder'))

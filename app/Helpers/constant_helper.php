@@ -20,3 +20,15 @@ const LEVEL_USER = [
 ];
 
 const NEWS_STATUS_PUBLISH = 'publish';
+
+const TYPE_MENU = [
+  "internal" => "Internal",
+  "external" => "External"
+];
+
+const TARGET_MENU = [
+  "_blank" => "_blank",
+  "_self" => "_self"
+];
+
+const TYPE_MENU_INTERNAL = 'internal';

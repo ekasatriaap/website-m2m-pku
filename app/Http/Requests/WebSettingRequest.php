@@ -38,7 +38,6 @@ class WebSettingRequest extends FormRequest
             "setting.latitude" => "string|max:255",
             "logo" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             "page_header" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
-            "parallax" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             "favicon" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
         ];
     }
@@ -62,6 +61,7 @@ class WebSettingRequest extends FormRequest
             "setting.latitude" => "Latitude",
             "logo" => "Logo",
             "favicon" => "Favicon",
+            "page_header" => "Header Halaman",
         ];
     }
 }
