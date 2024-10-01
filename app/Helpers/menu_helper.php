@@ -85,6 +85,10 @@ if (!function_exists('getMenu')) {
               "url" => "cms.web_setting.edit",
             ],
             [
+              "name" => "Beranda Web",
+              "url" => "cms.setting_beranda_web.edit",
+            ],
+            [
               "name" => "Menu",
               "url" => "cms.menu.index",
             ]

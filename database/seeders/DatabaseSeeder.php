@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             WebSettingSeeder::class,
             MenuSeeder::class,
+            SettingBerandaWebSeeder::class,
         ];
         $this->call($seeders);
     }
