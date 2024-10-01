@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
+
+class Testimoni extends Model
+{
+    use HasFactory, LogsActivity;
+
+    protected $table = "testimonis";
+    protected $fillable = [
+        "name",
+        "testimoni",
+        "angkatan",
+        "image"
+    ];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->setDescriptionForEvent(fn(string $eventName) => "Testimoni has been {$eventName}");
+    }
+}

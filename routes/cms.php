@@ -6,8 +6,10 @@ use App\Http\Controllers\Cms\MenuController;
 use App\Http\Controllers\Cms\NewsController;
 use App\Http\Controllers\Cms\PagesController;
 use App\Http\Controllers\Cms\ProfileController;
+use App\Http\Controllers\Cms\SettingBerandaWebController;
 use App\Http\Controllers\Cms\SliderController;
 use App\Http\Controllers\Cms\TabloidController;
+use App\Http\Controllers\Cms\TestimoniController;
 use App\Http\Controllers\Cms\UserController;
 use App\Http\Controllers\Cms\VideoController;
 use App\Http\Controllers\Cms\WebSettingController;
@@ -92,6 +94,16 @@ Route::prefix("cms/")->middleware("auth")->group(function () {
       'destroy' => 'cms.pages.destroy',
     ]);
 
+    Route::resource("testimoni", TestimoniController::class)->names([
+      'index' => 'cms.testimoni.index',
+      'create' => 'cms.testimoni.create',
+      'store' => 'cms.testimoni.store',
+      'edit' => 'cms.testimoni.edit',
+      'update' => 'cms.testimoni.update',
+      'show' => 'cms.testimoni.show',
+      'destroy' => 'cms.testimoni.destroy',
+    ]);
+
     Route::prefix("settings")->group(function () {
       Route::resource("slider", SliderController::class)->names([
         'index' => 'cms.slider.index',
@@ -105,6 +117,10 @@ Route::prefix("cms/")->middleware("auth")->group(function () {
       Route::controller(WebSettingController::class)->group(function () {
         Route::get('/web-setting', 'edit')->name('cms.web_setting.edit');
         Route::put('/web-setting', 'update')->name('cms.web_setting.update');
+      });
+      Route::controller(SettingBerandaWebController::class)->group(function () {
+        Route::get('/setting-beranda-web', 'edit')->name('cms.setting_beranda_web.edit');
+        Route::put('/setting-beranda-web', 'update')->name('cms.setting_beranda_web.update');
       });
       Route::resource("menu", MenuController::class)->names([
         'index' => 'cms.menu.index',

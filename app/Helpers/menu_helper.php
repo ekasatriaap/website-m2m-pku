@@ -68,6 +68,11 @@ if (!function_exists('getMenu')) {
           ]
         ],
         [
+          "name" => "Testimoni",
+          "url" => "cms.testimoni.index",
+          "icon" => "fas fa-star",
+        ],
+        [
           "name" => "Setting",
           "icon" => "fas fa-cog",
           "child" => [
