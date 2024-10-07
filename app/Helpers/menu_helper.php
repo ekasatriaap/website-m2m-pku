@@ -73,6 +73,20 @@ if (!function_exists('getMenu')) {
           "icon" => "fas fa-star",
         ],
         [
+          "name" => "Profile Web",
+          "icon" => "fas fa-university",
+          "child" => [
+            [
+              "name" => "Profile Anggota",
+              "url" => "cms.profile_anggota.index",
+            ],
+            // [
+            //   "name" => "Profile Deskripsi",
+            //   "url" => "cms.profile_deskripsi.index",
+            // ]
+          ]
+        ],
+        [
           "name" => "Setting",
           "icon" => "fas fa-cog",
           "child" => [

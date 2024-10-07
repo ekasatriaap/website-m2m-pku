@@ -32,3 +32,9 @@ const TARGET_MENU = [
 ];
 
 const TYPE_MENU_INTERNAL = 'internal';
+
+const JENIS_PROFILE = [
+  "madrasah" => "Madrasah",
+  "komite" => "Komite",
+  "struktural" => "Struktural",
+];

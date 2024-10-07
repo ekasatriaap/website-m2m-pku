@@ -18,8 +18,8 @@
                                 :value="$settings['section_1_title']['value']" placeholder="Judul Section 1" />
                             <x-form-input :label="__('URL Video Section 1')" name="setting[section_1_url_video]" id="section-1-url-video"
                                 :value="$settings['section_1_url_video']['value']" />
-                            <x-form-textarea class="summernote-simple" :label="__('Deskripsi Section 1')"
-                                name="setting[section_1_description]" id="section-1-description" :value="$settings['section_1_description']['value']" />
+                            <x-form-textarea class="summernote" :label="__('Deskripsi Section 1')" name="setting[section_1_description]"
+                                id="section-1-description" :value="$settings['section_1_description']['value']" />
                         </div>
                         <div class="col-md-6">
                             <x-form-image :label="__('Gambar Section 1')" previewId="image-preview-section-1" class="form_image_wide"

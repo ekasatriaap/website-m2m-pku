@@ -5,6 +5,7 @@ use App\Http\Controllers\Cms\GalleryController;
 use App\Http\Controllers\Cms\MenuController;
 use App\Http\Controllers\Cms\NewsController;
 use App\Http\Controllers\Cms\PagesController;
+use App\Http\Controllers\Cms\ProfileAnggotaController;
 use App\Http\Controllers\Cms\ProfileController;
 use App\Http\Controllers\Cms\SettingBerandaWebController;
 use App\Http\Controllers\Cms\SliderController;
@@ -130,6 +131,24 @@ Route::prefix("cms/")->middleware("auth")->group(function () {
         'update' => 'cms.menu.update',
         'destroy' => 'cms.menu.destroy',
       ]);
+      Route::resource("profile-anggota", ProfileAnggotaController::class)->names([
+        'index' => 'cms.profile_anggota.index',
+        'create' => 'cms.profile_anggota.create',
+        'store' => 'cms.profile_anggota.store',
+        'edit' => 'cms.profile_anggota.edit',
+        'update' => 'cms.profile_anggota.update',
+        'show' => 'cms.profile_anggota.show',
+        'destroy' => 'cms.profile_anggota.destroy',
+      ]);
+      // Route::resource("profile-deskripsi", ProfileDeskripsiController::class)->names([
+      //   'index' => 'cms.profile_deskripsi.index',
+      //   'create' => 'cms.profile_deskripsi.create',
+      //   'store' => 'cms.profile_deskripsi.store',
+      //   'edit' => 'cms.profile_deskripsi.edit',
+      //   'update' => 'cms.profile_deskripsi.update',
+      //   'show' => 'cms.profile_deskripsi.show',
+      //   'destroy' => 'cms.profile_deskripsi.destroy',
+      // ]);
       Route::controller(MenuController::class)->group(function () {
         Route::post('/menu/update-order', 'updateOrder')->name('cms.menu.updateOrder');
       });
