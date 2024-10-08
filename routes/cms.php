@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Cms\BidangController;
+use App\Http\Controllers\Cms\DescriptionProfileController;
 use App\Http\Controllers\Cms\GalleryController;
 use App\Http\Controllers\Cms\MenuController;
 use App\Http\Controllers\Cms\NewsController;
@@ -140,15 +141,10 @@ Route::prefix("cms/")->middleware("auth")->group(function () {
         'show' => 'cms.profile_anggota.show',
         'destroy' => 'cms.profile_anggota.destroy',
       ]);
-      // Route::resource("profile-deskripsi", ProfileDeskripsiController::class)->names([
-      //   'index' => 'cms.profile_deskripsi.index',
-      //   'create' => 'cms.profile_deskripsi.create',
-      //   'store' => 'cms.profile_deskripsi.store',
-      //   'edit' => 'cms.profile_deskripsi.edit',
-      //   'update' => 'cms.profile_deskripsi.update',
-      //   'show' => 'cms.profile_deskripsi.show',
-      //   'destroy' => 'cms.profile_deskripsi.destroy',
-      // ]);
+      Route::controller(DescriptionProfileController::class)->group(function () {
+        Route::get('/profile-deskripsi', 'edit')->name('cms.description_profile.edit');
+        Route::put('/profile-deskripsi', 'update')->name('cms.description_profile.update');
+      });
       Route::controller(MenuController::class)->group(function () {
         Route::post('/menu/update-order', 'updateOrder')->name('cms.menu.updateOrder');
       });

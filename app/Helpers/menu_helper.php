@@ -80,10 +80,10 @@ if (!function_exists('getMenu')) {
               "name" => "Profile Anggota",
               "url" => "cms.profile_anggota.index",
             ],
-            // [
-            //   "name" => "Profile Deskripsi",
-            //   "url" => "cms.profile_deskripsi.index",
-            // ]
+            [
+              "name" => "Deskripsi Profile",
+              "url" => "cms.description_profile.edit",
+            ]
           ]
         ],
         [

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             WebSettingSeeder::class,
             MenuSeeder::class,
             SettingBerandaWebSeeder::class,
+            DescriptionAnggotaSeeder::class,
         ];
         $this->call($seeders);
     }
