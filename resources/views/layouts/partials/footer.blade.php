@@ -1,7 +1,7 @@
 <footer class="main-footer">
     <div class="footer-left">
-        Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauv.al/">Muhamad
-            Nauval Azhar</a>
+        Developed with <i class="fas fa-heart text-danger"></i> by <a
+            href="https://www.instagram.com/ekasatriaap/">Initial E</a>
     </div>
     <div class="footer-right">
         2.3.0

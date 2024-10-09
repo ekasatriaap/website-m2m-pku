@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Cms\BidangController;
+use App\Http\Controllers\Cms\DashboardController;
 use App\Http\Controllers\Cms\DescriptionProfileController;
 use App\Http\Controllers\Cms\GalleryController;
 use App\Http\Controllers\Cms\JalurMasukPPDBController;
@@ -21,9 +22,9 @@ use App\Http\Controllers\Cms\WebSettingController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("cms/")->middleware("auth")->group(function () {
-  Route::get('/dashboard', function () {
-    return view('cms.dashboard', ['title' => "Dashboard"]);
-  })->name('cms.dashboard');
+  Route::controller(DashboardController::class)->group(function () {
+    Route::get('/dashboard', 'index')->name('cms.dashboard');
+  });
 
   Route::controller(ProfileController::class)->group(function () {
     Route::get('/profile', 'edit')->name('cms.profile.edit');

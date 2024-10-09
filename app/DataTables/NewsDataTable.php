@@ -41,15 +41,7 @@ class NewsDataTable extends DataTable
     public function query(News $model): QueryBuilder
     {
         return $model->with(['bidang', 'user'])
-            ->when(accountIsAdmin(), fn($query) => $query->where('created_by', accountLogin()->id))
-            ->when(!accountIsAdmin(), function ($query) {
-                return $query->where(function ($q) {
-                    $q->where('created_by', accountLogin()->id)
-                        ->orWhereHas('user', function ($q) {
-                            $q->where('level', 'admin');
-                        });
-                });
-            });
+            ->getNews();
     }
 
     /**

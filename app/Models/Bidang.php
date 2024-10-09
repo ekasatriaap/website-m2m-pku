@@ -21,4 +21,9 @@ class Bidang extends Model
             ->logOnly(['nama_bidang']) // atribut yang ingin dicatat
             ->setDescriptionForEvent(fn(string $eventName) => "Bidang has been {$eventName}");
     }
+
+    public function news()
+    {
+        return $this->hasMany(News::class, 'id_bidang', 'id');
+    }
 }

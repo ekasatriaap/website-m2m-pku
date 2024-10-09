@@ -62,4 +62,37 @@ class News extends Model
     {
         return $this->hasOne(User::class, 'id', 'created_by');
     }
+
+    public function scopeGetNews($query)
+    {
+        return $query->when(accountIsAdmin(), fn($query) => $query->where('created_by', accountLogin()->id))
+            ->when(!accountIsAdmin(), function ($query) {
+                return $query->where(function ($q) {
+                    $q->where('created_by', accountLogin()->id)
+                        ->orWhereHas('user', function ($q) {
+                            $q->where('level', 'admin');
+                        });
+                });
+            });
+    }
+
+    public function scopeStatusDraft($query)
+    {
+        return $query->where('status', self::STATUS_DRAFT);
+    }
+
+    public function scopeStatusPublished($query)
+    {
+        return $query->where('status', self::STATUS_PUBLISHED);
+    }
+
+    public function scopeStatusSubmission($query)
+    {
+        return $query->where('status', self::STATUS_SUBMISSION);
+    }
+
+    public function scopeStatusReject($query)
+    {
+        return $query->where('status', self::STATUS_REJECT);
+    }
 }
