@@ -32,7 +32,7 @@ class DescriptionProfileController extends Controller
                 if ($image_madrasah->value) {
                     deleteFile($image_madrasah->value);
                 }
-                DB::table('description_profiles')->where('param', 'image_madrasah')->update(['value' => $upload_image_madrasah['file']]);
+                DescriptionProfile::where('param', 'image_madrasah')->update(['value' => $upload_image_madrasah['file']]);
             }
             if ($request->hasFile('image_komite')) {
                 $file = $request->file('image_komite');
@@ -41,7 +41,7 @@ class DescriptionProfileController extends Controller
                 if ($image_komite->value) {
                     deleteFile($image_komite->value);
                 }
-                DB::table('description_profiles')->where('param', 'image_komite')->update(['value' => $upload_image_komite['file']]);
+                DescriptionProfile::where('param', 'image_komite')->update(['value' => $upload_image_komite['file']]);
             }
             if ($request->hasFile('image_struktural')) {
                 $file = $request->file('image_struktural');
@@ -50,10 +50,10 @@ class DescriptionProfileController extends Controller
                 if ($image_struktural->value) {
                     deleteFile($image_struktural->value);
                 }
-                DB::table('description_profiles')->where('param', 'image_struktural')->update(['value' => $upload_image_struktural['file']]);
+                DescriptionProfile::where('param', 'image_struktural')->update(['value' => $upload_image_struktural['file']]);
             }
             foreach ($request->post("setting") as $key => $item) {
-                DB::table('description_profiles')->where('param', $key)->update(['value' => $item]);
+                DescriptionProfile::where('param', $key)->update(['value' => $item]);
             }
         } catch (\Exception $e) {
             DB::rollBack();

@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             MenuSeeder::class,
             SettingBerandaWebSeeder::class,
             DescriptionAnggotaSeeder::class,
+            SettingPPDBSeeder::class,
         ];
         $this->call($seeders);
     }

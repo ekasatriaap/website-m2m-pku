@@ -12,5 +12,6 @@
         // Image Preview
         configUploadPreview('image-input-upload', 'image-preview');
         configSimpleSummernote('summernote-simple');
+        initializeNumberOnlyInputs();
     });
 </script>

@@ -11,6 +11,7 @@ class Video extends Model
 {
     use HasFactory, LogsActivity;
     protected $table = 'videos';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'title',
         'url',

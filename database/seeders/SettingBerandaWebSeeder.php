@@ -96,7 +96,11 @@ class SettingBerandaWebSeeder extends Seeder
                 "description" => "Gambar section 4"
             ]
         ])->each(function ($item) {
-            DB::table('setting_beranda_webs')->insert($item);
+            $today = [
+                'created_at' => now(),
+                'updated_at' => now()
+            ];
+            DB::table('setting_beranda_webs')->insert(array_merge($item, $today));
         });
     }
 }

@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\DescriptionProfile;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DescriptionAnggotaSeeder extends Seeder
 {
@@ -45,7 +44,11 @@ class DescriptionAnggotaSeeder extends Seeder
                 "description" => "Gambar Profile Struktural"
             ],
         ])->each(function ($item) {
-            DescriptionProfile::create($item);
+            $today = [
+                'created_at' => now(),
+                'updated_at' => now()
+            ];
+            DB::table('description_profiles')->insert(array_merge($item, $today));
         });
     }
 }

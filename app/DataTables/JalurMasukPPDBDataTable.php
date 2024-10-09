@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Tabloid;
+use App\Models\JalurMasukPPDB;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,9 +12,9 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class TabloidDataTable extends DataTable
+class JalurMasukPPDBDataTable extends DataTable
 {
-    protected $view = 'cms.tabloid';
+    protected $view = 'cms.jalur-masuk-ppdb';
     /**
      * Build the DataTable class.
      *
@@ -22,7 +22,7 @@ class TabloidDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        $primaryKey = (new Tabloid())->getKeyName();
+        $primaryKey = (new JalurMasukPPDB())->getKeyName();
         return (new EloquentDataTable($query))
             ->addColumn('aksi', function ($row) use ($primaryKey) {
                 $data['id'] = encode($row->$primaryKey);
@@ -36,9 +36,9 @@ class TabloidDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(Tabloid $model): QueryBuilder
+    public function query(JalurMasukPPDB $model): QueryBuilder
     {
-        return $model->select('id', 'title', 'created_at');
+        return $model->select('id', 'nama_jalur', 'created_at');
     }
 
     /**
@@ -63,7 +63,7 @@ class TabloidDataTable extends DataTable
         return [
             Column::make('created_at')->hidden()->searchable(false),
             Column::make('DT_RowIndex')->name("id")->title("No")->searchable(false)->width(50)->orderable(false)->addClass('text-center'),
-            Column::make('title')->title("Judul"),
+            Column::make('nama_jalur')->title("Nama Jalur"),
             Column::computed('aksi')
                 ->title('')
                 ->exportable(false)
@@ -79,6 +79,6 @@ class TabloidDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Tabloid_' . date('YmdHis');
+        return 'Jalur_Masuk_PPDB_' . date('YmdHis');
     }
 }

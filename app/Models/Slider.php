@@ -11,6 +11,7 @@ class Slider extends Model
 {
     use HasFactory, LogsActivity;
     protected $table = 'sliders';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'title',
         'description',

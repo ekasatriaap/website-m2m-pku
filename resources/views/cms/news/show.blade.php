@@ -8,6 +8,8 @@
         <p class="text-muted">Oleh {{ $news->user->name }}</p>
         <p class="text-muted">Bidang {{ $news->bidang->nama_bidang }}</p>
         <hr />
+        <p>Ringkasan</p>
+        <p>{{ $news->meta_description }}</p>
         <p>{!! $news->content !!}</p>
     </div>
 </div>

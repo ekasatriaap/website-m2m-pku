@@ -21,6 +21,8 @@
 <script src="{{ asset('') }}assets/node_modules/izitoast/dist/js/iziToast.min.js"></script>
 {{-- image preview --}}
 <script src="{{ asset('') }}assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js"></script>
+{{-- tags input --}}
+<script src="{{ asset('') }}assets/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
 
 <!-- Template JS File -->
 <script src="{{ asset('') }}assets/js/scripts.js"></script>

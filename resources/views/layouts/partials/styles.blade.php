@@ -12,8 +12,8 @@
  <link rel="stylesheet" href="{{ asset('') }}assets/node_modules/izitoast/dist/css/iziToast.min.css">
  {{-- selectric --}}
  <link rel="stylesheet" href="{{ asset('') }}assets/node_modules/selectric/public/selectric.css">
-
-
+ {{-- tags input --}}
+ <link rel="stylesheet" href="{{ asset('') }}assets/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
  <!-- Template CSS -->
  <link rel="stylesheet" href="{{ asset('') }}assets/css/style.css">
  <link rel="stylesheet" href="{{ asset('') }}assets/css/custom.css">

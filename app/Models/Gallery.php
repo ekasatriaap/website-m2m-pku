@@ -11,7 +11,7 @@ class Gallery extends Model
 {
     use HasFactory, LogsActivity;
     protected $table = 'galleries';
-
+    protected $primaryKey = 'id';
     protected $fillable = [
         'title',
         'description',

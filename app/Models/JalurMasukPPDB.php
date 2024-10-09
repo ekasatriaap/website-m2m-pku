@@ -7,19 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Menu extends Model
+class JalurMasukPPDB extends Model
 {
     use HasFactory, LogsActivity;
-    protected $table = 'menus';
-    protected $primaryKey = 'id';
+
+    protected $table = "jalur_masuk_ppdb";
+    protected $primaryKey = "id";
     protected $fillable = [
-        'nama_menu',
-        'url',
-        'icon',
-        'parent_id',
-        'urutan',
-        'target',
-        'type',
+        "nama_jalur",
+        "description",
+        "persyaratan"
+    ];
+
+    protected $casts = [
+        "persyaratan" => "json",
     ];
 
     public function getActivitylogOptions(): LogOptions
@@ -27,11 +28,6 @@ class Menu extends Model
         return LogOptions::defaults()
             ->logFillable()
             ->logOnlyDirty()
-            ->setDescriptionForEvent(fn(string $eventName) => "Menu has been {$eventName}");
-    }
-
-    public function children()
-    {
-        return $this->hasMany(Menu::class, 'parent_id', 'id');
+            ->setDescriptionForEvent(fn(string $eventName) => "Jalur Masuk PPDB berhasil di {$eventName}");
     }
 }

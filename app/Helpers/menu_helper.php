@@ -87,6 +87,24 @@ if (!function_exists('getMenu')) {
           ]
         ],
         [
+          "name" => "Informasi PPDB",
+          "icon" => "fas fa-scroll",
+          "child" => [
+            [
+              "name" => "Syarat PPDB",
+              "url" => "cms.syarat_ppdb.index",
+            ],
+            [
+              "name" => "Setting PPDB",
+              "url" => "cms.setting_ppdb.edit",
+            ],
+            [
+              "name" => "Jalur Masuk PPDB",
+              "url" => "cms.jalur_masuk_ppdb.index",
+            ]
+          ]
+        ],
+        [
           "name" => "Setting",
           "icon" => "fas fa-cog",
           "child" => [

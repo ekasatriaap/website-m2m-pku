@@ -11,10 +11,12 @@ class News extends Model
 {
     use HasFactory, LogsActivity;
     protected $table = 'news';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'title',
         'slug',
         'content',
+        'meta_description',
         'image',
         'thumbnail',
         'created_by',
@@ -47,7 +49,7 @@ class News extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logOnly(['title', 'slug', 'content', 'status', 'id_bidang', 'image']) // atribut yang ingin dicatat
+            ->logOnly(['title', 'slug', 'content', 'meta_description', 'status', 'id_bidang', 'image']) // atribut yang ingin dicatat
             ->setDescriptionForEvent(fn(string $eventName) => "News has been {$eventName}");
     }
 

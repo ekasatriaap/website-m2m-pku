@@ -6,6 +6,7 @@
     <x-form-select-inline :label="__('Bidang')" id="bidang" name="id_bidang" :options="$bidangs" :value="old('id_bidang', $news->id_bidang)"
         placeholder="Pilih Bidang" />
 @endif
+<x-form-input-inline :label="__('Ringkasan (Optimasi SEO)')" id="meta-description" name="meta_description" :value="old('meta_description', $news->meta_description)" />
 <x-form-textarea-inline :label="__('Konten')" class="summernote" id="content" name="content" :value="old('content', $news->content)" />
 @if (!accountIsAdmin())
     <x-form-select-inline :label="__('Status')" id="status" name="status" :options="$status" :value="old('status', $news->status)"

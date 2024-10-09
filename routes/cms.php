@@ -3,13 +3,16 @@
 use App\Http\Controllers\Cms\BidangController;
 use App\Http\Controllers\Cms\DescriptionProfileController;
 use App\Http\Controllers\Cms\GalleryController;
+use App\Http\Controllers\Cms\JalurMasukPPDBController;
 use App\Http\Controllers\Cms\MenuController;
 use App\Http\Controllers\Cms\NewsController;
 use App\Http\Controllers\Cms\PagesController;
 use App\Http\Controllers\Cms\ProfileAnggotaController;
 use App\Http\Controllers\Cms\ProfileController;
 use App\Http\Controllers\Cms\SettingBerandaWebController;
+use App\Http\Controllers\Cms\SettingPPDBController;
 use App\Http\Controllers\Cms\SliderController;
+use App\Http\Controllers\Cms\SyaratPPDBController;
 use App\Http\Controllers\Cms\TabloidController;
 use App\Http\Controllers\Cms\TestimoniController;
 use App\Http\Controllers\Cms\UserController;
@@ -145,9 +148,30 @@ Route::prefix("cms/")->middleware("auth")->group(function () {
         Route::get('/profile-deskripsi', 'edit')->name('cms.description_profile.edit');
         Route::put('/profile-deskripsi', 'update')->name('cms.description_profile.update');
       });
+      Route::resource("syarat-ppdb", SyaratPPDBController::class)->except(["show"])->names([
+        'index' => 'cms.syarat_ppdb.index',
+        'create' => 'cms.syarat_ppdb.create',
+        'store' => 'cms.syarat_ppdb.store',
+        'edit' => 'cms.syarat_ppdb.edit',
+        'update' => 'cms.syarat_ppdb.update',
+        'destroy' => 'cms.syarat_ppdb.destroy',
+      ]);
+      Route::controller(SettingPPDBController::class)->group(function () {
+        Route::get('/setting-ppdb', 'edit')->name('cms.setting_ppdb.edit');
+        Route::put('/setting-ppdb', 'update')->name('cms.setting_ppdb.update');
+      });
       Route::controller(MenuController::class)->group(function () {
         Route::post('/menu/update-order', 'updateOrder')->name('cms.menu.updateOrder');
       });
+      Route::resource("jalur-masuk-ppdb", JalurMasukPPDBController::class)->names([
+        'index' => 'cms.jalur_masuk_ppdb.index',
+        'create' => 'cms.jalur_masuk_ppdb.create',
+        'store' => 'cms.jalur_masuk_ppdb.store',
+        'edit' => 'cms.jalur_masuk_ppdb.edit',
+        'update' => 'cms.jalur_masuk_ppdb.update',
+        'show' => 'cms.jalur_masuk_ppdb.show',
+        'destroy' => 'cms.jalur_masuk_ppdb.destroy',
+      ]);
     });
   });
 });

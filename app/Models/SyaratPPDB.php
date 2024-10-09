@@ -7,22 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Tabloid extends Model
+class SyaratPPDB extends Model
 {
     use HasFactory, LogsActivity;
-
-    protected $table = 'tabloids';
+    protected $table = 'syarat_ppdb';
     protected $primaryKey = 'id';
-    protected $fillable = [
-        'title',
-        'description',
-        'file',
-    ];
+    protected $fillable = ['syarat_name', 'description', 'urutan'];
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logOnly(['title', 'description', 'file']) // atribut yang ingin dicatat
-            ->setDescriptionForEvent(fn(string $eventName) => "Tabloid has been {$eventName}");
+            ->logOnly(['syarat_name', 'description', 'urutan'])
+            ->setDescriptionForEvent(fn(string $eventName) => "Syarat PPDB has been {$eventName}");
     }
 }

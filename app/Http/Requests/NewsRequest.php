@@ -27,7 +27,8 @@ class NewsRequest extends FormRequest
             "content" => ($this->input("status") != 'draft' ? '|required' : ''),
             'image' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
             "id_bidang" => (!accountIsAdmin() ? "required|exists:bidangs,id" : ''),
-            "status" => (!accountIsAdmin() ? "required|string|in:publish,draft,submission,reject" : '')
+            "status" => (!accountIsAdmin() ? "required|string|in:publish,draft,submission,reject" : ''),
+            "meta_description" => "nullable|string|max:100",
         ];
     }
 
@@ -40,6 +41,7 @@ class NewsRequest extends FormRequest
             "image" => "Image",
             "id_bidang" => "Bidang",
             "status" => "Status",
+            "meta_description" => "Meta Description",
         ];
     }
 }

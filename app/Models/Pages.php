@@ -11,6 +11,7 @@ class Pages extends Model
 {
     use HasFactory, LogsActivity;
     protected $table = 'pages';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'title',
         'slug',

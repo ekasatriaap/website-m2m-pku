@@ -7,25 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class ProfileAnggota extends Model
+class SettingPPDB extends Model
 {
     use HasFactory, LogsActivity;
-    protected $table = "profile_anggotas";
-    protected $primaryKey = 'id';
-    protected $fillable = [
-        "name",
-        "jabatan",
-        "description",
-        "image",
-        "urutan",
-        "jenis_profile",
-    ];
+    protected $table = "setting_ppdb";
+    protected $fillable = ["param", "value", "description"];
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
             ->logFillable()
             ->logOnlyDirty()
-            ->setDescriptionForEvent(fn(string $eventName) => "Profile Anggota has been {$eventName}");
+            ->setDescriptionForEvent(fn(string $eventName) => "This model has been {$eventName}");
     }
 }

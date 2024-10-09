@@ -12,6 +12,7 @@ class Testimoni extends Model
     use HasFactory, LogsActivity;
 
     protected $table = "testimonis";
+    protected $primaryKey = 'id';
     protected $fillable = [
         "name",
         "testimoni",

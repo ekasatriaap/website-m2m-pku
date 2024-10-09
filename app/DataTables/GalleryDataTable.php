@@ -38,7 +38,7 @@ class GalleryDataTable extends DataTable
      */
     public function query(Gallery $model): QueryBuilder
     {
-        return $model->select('id', 'title', 'description', 'created_at');
+        return $model->select('id', 'title', 'created_at');
     }
 
     /**
@@ -64,7 +64,6 @@ class GalleryDataTable extends DataTable
             Column::make('created_at')->hidden()->searchable(false),
             Column::make('DT_RowIndex')->name("id")->title("No")->searchable(false)->width(50)->orderable(false)->addClass('text-center'),
             Column::make('title')->title("Judul"),
-            Column::make('description')->title("Deskripsi"),
             Column::computed('aksi')
                 ->title('')
                 ->exportable(false)

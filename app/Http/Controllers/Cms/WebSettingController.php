@@ -32,7 +32,7 @@ class WebSettingController extends Controller
                 if ($logo->value) {
                     deleteFile($logo->value);
                 }
-                DB::table('web_settings')->where('param', 'logo')->update(['value' => $upload_logo['file']]);
+                WebSetting::where('param', 'logo')->update(['value' => $upload_logo['file']]);
             }
             if ($request->hasFile('favicon')) {
                 $file = $request->file('favicon');
@@ -41,7 +41,7 @@ class WebSettingController extends Controller
                 if ($favicon->value) {
                     deleteFile($favicon->value);
                 }
-                DB::table('web_settings')->where('param', 'favicon')->update(['value' => $upload_favicon['file']]);
+                WebSetting::where('param', 'favicon')->update(['value' => $upload_favicon['file']]);
             }
             if ($request->hasFile('page_header')) {
                 $file = $request->file('page_header');
@@ -50,10 +50,10 @@ class WebSettingController extends Controller
                 if ($page_header->value) {
                     deleteFile($page_header->value);
                 }
-                DB::table('web_settings')->where('param', 'page_header')->update(['value' => $upload_page_header['file']]);
+                WebSetting::where('param', 'page_header')->update(['value' => $upload_page_header['file']]);
             }
             foreach ($request->post("setting") as $key => $item) {
-                DB::table('web_settings')->where('param', $key)->update(['value' => $item]);
+                WebSetting::where('param', $key)->update(['value' => $item]);
             }
         } catch (\Exception $e) {
             DB::rollBack();
