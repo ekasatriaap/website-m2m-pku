@@ -9,12 +9,14 @@ use Illuminate\View\Component;
 class AuthLayout extends Component
 {
     public $title;
+    public $setting;
     /**
      * Create a new component instance.
      */
     public function __construct($title = null)
     {
         $this->title = $title ?? "Login";
+        $this->setting = getSettingWebsite();
     }
 
     /**

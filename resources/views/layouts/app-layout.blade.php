@@ -4,6 +4,11 @@
 <head>
     @include('layouts.partials.meta')
     <title>{{ $title }}</title>
+    {{-- author --}}
+    <meta name="author" content="Eka S Ariaputra, Erik Setiawan">
+    @if ($setting['favicon'])
+        <link rel="shortcut icon" href="{{ asset('/storage/uploads/' . $setting['favicon']) }}">
+    @endif
     <meta name="csrf-token" content="{!! csrf_token() !!}" />
     @include('layouts.partials.styles')
     @stack('add-styles')

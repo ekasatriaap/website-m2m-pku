@@ -18,7 +18,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login', ['title' => $this->title]);
+        $data = [
+            "title" => $this->title,
+            "logo" => getSettingWebsite('logo')
+        ];
+        return view('auth.login', $data);
     }
 
     /**
