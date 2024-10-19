@@ -10,7 +10,8 @@
     <x-row>
         <div class="col-md-12">
             <x-card :title="$title">
-                <x-form action="{{ route('cms.web_setting.update') }}" method="post" enctype="multipart/form-data">
+                <x-form action="{{ route('cms.setting_beranda_web.update') }}" method="post"
+                    enctype="multipart/form-data">
                     @method('put')
                     <x-row>
                         <div class="col-md-6">

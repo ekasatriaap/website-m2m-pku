@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MenuRequest;
 use App\Models\Menu;
 use App\Models\Pages;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class MenuController extends Controller
 {
@@ -64,13 +66,18 @@ class MenuController extends Controller
         return view($this->view . 'edit', $data);
     }
 
-    public function update(MenuRequest $request, $id)
+    public function update(Request $request, $id)
     {
         notAjaxAbort();
+        $requestRule = new MenuRequest();
         DB::beginTransaction();
         try {
             $id = decode($id);
-            $attributes = $request->validated();
+            $validator = Validator::make($request->all(), $requestRule->rules($id), $requestRule->attributes());
+            if ($validator->fails()) {
+                throw new Exception();
+            }
+            $attributes = $validator->validated();
             $menu = Menu::findOrFail($id);
             $menu->update($attributes);
         } catch (\Exception $e) {

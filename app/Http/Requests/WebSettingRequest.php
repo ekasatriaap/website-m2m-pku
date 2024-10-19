@@ -23,8 +23,10 @@ class WebSettingRequest extends FormRequest
     {
         return [
             "setting.name" => "string|max:255",
+            "setting.alias" => "string|max:255",
             "setting.description" => "string",
             "setting.tagline" => "string|max:255",
+            "setting.footer_credit" => "string|max:255",
             "setting.address" => "string|max:255",
             "setting.postcode" => "numeric|digits:5",
             "setting.phone" => "numeric|digits_between:10,15",
@@ -46,8 +48,10 @@ class WebSettingRequest extends FormRequest
     {
         return [
             "setting.name" => "Nama",
+            "setting.alias" => "Alias",
             "setting.description" => "Deskripsi",
             "setting.tagline" => "Tagline",
+            "setting.footer_credit" => "Credit",
             "setting.address" => "Alamat",
             "setting.postcode" => "Kode Pos",
             "setting.phone" => "Telepon",

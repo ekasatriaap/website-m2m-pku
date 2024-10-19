@@ -21,10 +21,15 @@
                         <div class="col-md-6">
                             <x-form-input :label="__('Nama Sekolah')" name="setting[name]" id="name" :value="$settings['name']['value']"
                                 placeholder="Nama Sekolah" />
+                            <x-form-input :label="__('Alias')" name="setting[alias]" id="alias" :value="$settings['alias']['value']"
+                                placeholder="Alias Sekolah" />
                             <x-form-textarea class="summernote-simple" :label="__('Deskripsi')" name="setting[description]"
                                 id="description" :value="$settings['description']['value']" />
                             <x-form-input :label="__('Tagline')" name="setting[tagline]" id="tagline" :value="$settings['tagline']['value']" />
-                            <x-form-input :label="__('Alamat')" name="setting[address]" id="address" :value="$settings['address']['value']" />
+                            <x-form-input :label="__('Credit')" name="setting[footer_credit]" id="footer_credit"
+                                :value="$settings['footer_credit']['value']" />
+                            <x-form-input :label="__('Alamat')" name="setting[address]" id="address"
+                                :value="$settings['address']['value']" />
                             <x-form-input :label="__('Kode Pos')" name="setting[postcode]" id="postcode" :value="$settings['postcode']['value']"
                                 data-number-only data-max-digits="5" />
                             <x-form-input type="tel" :label="__('Nomor telepon')" name="setting[phone]" id="phone"

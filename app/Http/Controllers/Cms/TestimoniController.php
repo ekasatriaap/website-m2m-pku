@@ -35,12 +35,13 @@ class TestimoniController extends Controller
         notAjaxAbort();
         DB::beginTransaction();
         try {
+            $attributes = $request->validated();
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
                 $upload = uploadFile($file, 'testimoni');
                 $attributes['image'] = $upload['file'];
             }
-            Testimoni::create($request->validated());
+            Testimoni::create($attributes);
         } catch (\Exception $e) {
             DB::rollBack();
             return responseFail(GAGAL_SIMPAN);

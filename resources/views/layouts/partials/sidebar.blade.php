@@ -33,7 +33,7 @@
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-            <a href="{{ route('website') }}" class="btn btn-primary btn-lg btn-block btn-icon-split">
+            <a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg btn-block btn-icon-split">
                 <i class="fas fa-rocket"></i> Website
             </a>
         </div>

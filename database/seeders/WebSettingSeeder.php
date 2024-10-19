@@ -99,6 +99,16 @@ class WebSettingSeeder extends Seeder
                 "value" => "",
                 "description" => "Header Halaman",
             ],
+            [
+                "param" => "alias",
+                "value" => "",
+                "description" => "Alias",
+            ],
+            [
+                "param" => "footer_credit",
+                "value" => "",
+                "description" => "Credit",
+            ],
         ])->each(function ($data) {
             $today = [
                 'created_at' => now(),

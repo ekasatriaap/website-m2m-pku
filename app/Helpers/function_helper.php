@@ -80,3 +80,11 @@ if (!function_exists("getSettingWebsite")) {
     return array_key_exists($param, $settingApp) ? $settingApp[$param] : '';
   }
 }
+
+if (!function_exists('tanggal')) {
+  function tanggal($date, $format = 'd F Y')
+  {
+    if (empty($date)) return '';
+    return Carbon\Carbon::parse($date)->translatedFormat($format);
+  }
+}

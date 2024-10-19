@@ -29,7 +29,7 @@ class SettingBerandaWebController extends Controller
                 $file = $request->file('section_1_image');
                 $upload_section_1_image  = uploadFile($file, 'setting-beranda-web');
                 $sec = SettingBerandaWeb::where('param', 'sec')->get()->first();
-                if ($sec->value) {
+                if (!empty($sec->value)) {
                     deleteFile($sec->value);
                 }
                 SettingBerandaWeb::where('param', 'section_1_image')->update(['value' => $upload_section_1_image['file']]);
@@ -38,7 +38,7 @@ class SettingBerandaWebController extends Controller
                 $file = $request->file('section_2_image');
                 $upload_section_2_image = uploadFile($file, 'setting-beranda-web');
                 $section_2_image = SettingBerandaWeb::where('param', 'section_2_image')->get()->first();
-                if ($section_2_image->value) {
+                if (!empty($section_2_image->value)) {
                     deleteFile($section_2_image->value);
                 }
                 SettingBerandaWeb::where('param', 'section_2_image')->update(['value' => $upload_section_2_image['file']]);
@@ -47,7 +47,7 @@ class SettingBerandaWebController extends Controller
                 $file = $request->file('section_2_foto');
                 $upload_section_2_foto = uploadFile($file, 'setting-beranda-web');
                 $section_2_foto = SettingBerandaWeb::where('param', 'section_2_foto')->get()->first();
-                if ($section_2_foto->value) {
+                if (!empty($section_2_foto->value)) {
                     deleteFile($section_2_foto->value);
                 }
                 SettingBerandaWeb::where('param', 'section_2_foto')->update(['value' => $upload_section_2_foto['file']]);
@@ -56,7 +56,7 @@ class SettingBerandaWebController extends Controller
                 $file = $request->file('section_3_image');
                 $upload_section_3_image = uploadFile($file, 'setting-beranda-web');
                 $section_3_image = SettingBerandaWeb::where('param', 'section_3_image')->get()->first();
-                if ($section_3_image->value) {
+                if (!empty($section_3_image->value)) {
                     deleteFile($section_3_image->value);
                 }
                 SettingBerandaWeb::where('param', 'section_3_image')->update(['value' => $upload_section_3_image['file']]);
@@ -65,7 +65,7 @@ class SettingBerandaWebController extends Controller
                 $file = $request->file('section_4_image');
                 $upload_section_4_image = uploadFile($file, 'setting-beranda-web');
                 $section_4_image = SettingBerandaWeb::where('param', 'section_4_image')->get()->first();
-                if ($section_4_image->value) {
+                if (!empty($section_4_image->value)) {
                     deleteFile($section_4_image->value);
                 }
                 SettingBerandaWeb::where('param', 'section_4_image')->update(['value' => $upload_section_4_image['file']]);

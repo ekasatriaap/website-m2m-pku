@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('url', 191)->default('#');
             $table->string('icon', 191)->nullable();
             $table->string('parent_id', 191)->nullable();
-            $table->string('urutan', 191)->nullable();
+            $table->integer('urutan')->nullable();
             $table->enum('target', ['_blank', '_self']);
             $table->enum("type", ['internal', 'external']);
             $table->timestamps();

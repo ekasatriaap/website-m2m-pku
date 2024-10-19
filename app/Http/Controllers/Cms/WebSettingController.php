@@ -29,7 +29,7 @@ class WebSettingController extends Controller
                 $file = $request->file('logo');
                 $upload_logo = uploadFile($file, 'web-setting');
                 $logo = WebSetting::where('param', 'logo')->get()->first();
-                if ($logo->value) {
+                if (!empty($logo->value)) {
                     deleteFile($logo->value);
                 }
                 WebSetting::where('param', 'logo')->update(['value' => $upload_logo['file']]);
@@ -38,7 +38,7 @@ class WebSettingController extends Controller
                 $file = $request->file('favicon');
                 $upload_favicon = uploadFile($file, 'web-setting');
                 $favicon = WebSetting::where('param', 'favicon')->get()->first();
-                if ($favicon->value) {
+                if (!empty($favicon->value)) {
                     deleteFile($favicon->value);
                 }
                 WebSetting::where('param', 'favicon')->update(['value' => $upload_favicon['file']]);
@@ -47,7 +47,7 @@ class WebSettingController extends Controller
                 $file = $request->file('page_header');
                 $upload_page_header = uploadFile($file, 'web-setting');
                 $page_header = WebSetting::where('param', 'page_header')->get()->first();
-                if ($page_header->value) {
+                if (!empty($page_header->value)) {
                     deleteFile($page_header->value);
                 }
                 WebSetting::where('param', 'page_header')->update(['value' => $upload_page_header['file']]);
