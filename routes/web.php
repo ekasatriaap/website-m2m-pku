@@ -15,6 +15,8 @@ Route::controller(WebsiteController::class)->group(function () {
     Route::get("video", "video")->name("video");
     Route::get("majalah", "majalah")->name("majalah");
     Route::get("informasi-ppdb", "informasiPPDB")->name("informasi_ppdb");
+    Route::get("visi-misi", "visiMisi")->name("visi_misi");
+    Route::get("faq", "faq")->name("faq");
 });
 
 require __DIR__ . '/auth.php';

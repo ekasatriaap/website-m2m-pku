@@ -20,8 +20,8 @@
                 </div>
                 <!--/column -->
                 <div class="col-lg-6">
-                    <img src="./assets/img/icons/lineal/telemarketer.svg" class="svg-inject icon-svg icon-svg-md mb-4"
-                        alt="" />
+                    <img src="{{ asset('') }}/web-assets/img/icons/lineal/telemarketer.svg"
+                        class="svg-inject icon-svg icon-svg-md mb-4" alt="" />
                     <h2 class="display-4 mb-8">{{ $setting['main_title']['value'] }}</h2>
                     <p>
                         {!! $setting['main_description']['value'] !!}
@@ -146,10 +146,11 @@
                 data-image-src="{{ asset('') }}/web-assets/img/photos/bg3.jpg">
                 <div
                     class="card-body p-6 p-md-11 d-lg-flex flex-row align-items-lg-center justify-content-md-between text-center text-lg-start">
-                    <h3 class="display-6 mb-6 mb-lg-0 pe-lg-10 pe-xl-5 pe-xxl-18 text-white">Lebih dari 5000 orang
-                        sudah menjadi alumni MAN 2 Kota Pekanbaru. Ayo join menjadi anggota dari alumni MAN 2 Pekanbaru
+                    <h3 class="display-6 mb-6 mb-lg-0 pe-lg-10 pe-xl-5 pe-xxl-18 text-white">
+                        {!! $setting['hook_ppdb']['value'] !!}
                     </h3>
-                    <a href="#" class="btn btn-white rounded-pill mb-0 text-nowrap">Daftar Sekarang</a>
+                    <a href="{{ url($setting['link_ppdb']['value']) }}"
+                        class="btn btn-white rounded-pill mb-0 text-nowrap">Daftar Sekarang</a>
                 </div>
                 <!--/.card-body -->
             </div>

@@ -29,7 +29,7 @@ class SettingPPDBController extends Controller
                 $file = $request->file('main_image');
                 $upload_main_image = uploadFile($file, 'informasi-ppdb');
                 $main_image = SettingPPDB::where('param', 'main_image')->get()->first();
-                if ($main_image->value) {
+                if (!empty($main_image->value)) {
                     deleteFile($main_image->value);
                 }
                 SettingPPDB::where('param', 'main_image')->update(['value' => $upload_main_image['file']]);
@@ -38,7 +38,7 @@ class SettingPPDBController extends Controller
                 $file = $request->file('syarat_umum_image');
                 $upload_syarat_umum_image = uploadFile($file, 'informasi-ppdb');
                 $syarat_umum_image = SettingPPDB::where('param', 'syarat_umum_image')->get()->first();
-                if ($syarat_umum_image->value) {
+                if (!empty($syarat_umum_image->value)) {
                     deleteFile($syarat_umum_image->value);
                 }
                 SettingPPDB::where('param', 'syarat_umum_image')->update(['value' => $upload_syarat_umum_image['file']]);
@@ -47,7 +47,7 @@ class SettingPPDBController extends Controller
                 $file = $request->file('jalur_masuk_image');
                 $upload_jalur_masuk_image = uploadFile($file, 'informasi-ppdb');
                 $jalur_masuk_image = SettingPPDB::where('param', 'jalur_masuk_image')->get()->first();
-                if ($jalur_masuk_image->value) {
+                if (!empty($jalur_masuk_image->value)) {
                     deleteFile($jalur_masuk_image->value);
                 }
                 SettingPPDB::where('param', 'jalur_masuk_image')->update(['value' => $upload_jalur_masuk_image['file']]);

@@ -22,12 +22,14 @@ class SettingPPDBRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "setting.main_title" => "required|string|max:255",
-            "setting.main_description" => "required|string",
+            "setting.main_title" => "string|max:255",
+            "setting.main_description" => "string",
             "main_image" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
-            "setting.syarat_umum_decription" => "required|string",
+            "setting.syarat_umum_decription" => "string",
             "syarat_umum_image" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
             "jalur_masuk_image" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048",
+            "setting.hook_ppdb" => "string",
+            "setting.link_ppdb" => "string",
         ];
     }
 
@@ -40,6 +42,8 @@ class SettingPPDBRequest extends FormRequest
             "setting.syarat_umum_decription" => "Deskripsi Syarat Umum",
             "syarat_umum_image" => "Gambar Syarat Umum",
             "jalur_masuk_image" => "Gambar Jalur Masuk",
+            "setting.hook_ppdb" => "Hook PPDB",
+            "setting.link_ppdb" => "Link PPDB",
         ];
     }
 }

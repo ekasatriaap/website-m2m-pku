@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DescriptionProfile;
+use App\Models\Faq;
 use App\Models\Gallery;
 use App\Models\JalurMasukPPDB;
 use App\Models\News;
@@ -15,6 +16,7 @@ use App\Models\SyaratPPDB;
 use App\Models\Tabloid;
 use App\Models\Testimoni;
 use App\Models\Video;
+use App\Models\VisiMisi;
 use Illuminate\Http\Request;
 
 class WebsiteController extends Controller
@@ -166,5 +168,24 @@ class WebsiteController extends Controller
             "syarat" => $syarat
         ];
         return view("{$this->view}.informasi-ppdb", $data);
+    }
+
+    public function visiMisi()
+    {
+        $data = [
+            "title" => "Visi Misi",
+            "setting" => VisiMisi::all()->keyBy("param")
+        ];
+        return view("{$this->view}.visi-misi", $data);
+    }
+
+    public function faq()
+    {
+        $data = [
+            "title" => "FAQ",
+            "faq" => Faq::all()
+        ];
+
+        return view("{$this->view}.faq", $data);
     }
 }

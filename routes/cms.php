@@ -3,6 +3,7 @@
 use App\Http\Controllers\Cms\BidangController;
 use App\Http\Controllers\Cms\DashboardController;
 use App\Http\Controllers\Cms\DescriptionProfileController;
+use App\Http\Controllers\Cms\FaqController;
 use App\Http\Controllers\Cms\GalleryController;
 use App\Http\Controllers\Cms\JalurMasukPPDBController;
 use App\Http\Controllers\Cms\MenuController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Cms\TabloidController;
 use App\Http\Controllers\Cms\TestimoniController;
 use App\Http\Controllers\Cms\UserController;
 use App\Http\Controllers\Cms\VideoController;
+use App\Http\Controllers\Cms\VisiMisiController;
 use App\Http\Controllers\Cms\WebSettingController;
 use Illuminate\Support\Facades\Route;
 
@@ -172,6 +174,18 @@ Route::prefix("cms/")->middleware("auth")->group(function () {
         'update' => 'cms.jalur_masuk_ppdb.update',
         'show' => 'cms.jalur_masuk_ppdb.show',
         'destroy' => 'cms.jalur_masuk_ppdb.destroy',
+      ]);
+      Route::controller(VisiMisiController::class)->group(function () {
+        Route::get('/visi-misi', 'edit')->name('cms.visi_misi.edit');
+        Route::put('/visi-misi', 'update')->name('cms.visi_misi.update');
+      });
+      Route::resource("faq", FaqController::class)->names([
+        'index' => 'cms.faq.index',
+        'create' => 'cms.faq.create',
+        'store' => 'cms.faq.store',
+        'edit' => 'cms.faq.edit',
+        'update' => 'cms.faq.update',
+        'destroy' => 'cms.faq.destroy',
       ]);
     });
   });

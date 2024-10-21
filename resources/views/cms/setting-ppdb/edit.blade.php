@@ -19,7 +19,8 @@
                     <x-row>
                         <div class="col-md-6">
                             <x-form-textarea class="summernote-simple" :label="__('Deskripsi Syarat Umum')"
-                                name="setting[syarat_umum_decription]" id="syarat-umum-decription" :value="$settings['syarat_umum_decription']['value']" />
+                                name="setting[syarat_umum_description]" id="syarat-umum-description"
+                                :value="$settings['syarat_umum_description']['value']" />
                         </div>
                         <div class="col-md-6">
                             <x-form-image :label="__('Gambar Syarat Umum')" previewId="image-preview-syarat-umum"
@@ -28,6 +29,12 @@
                         </div>
                     </x-row>
                     <x-row>
+                        <div class="col-md-6">
+                            <x-form-textarea class="summernote-simple" :label="__('Hook')" name="setting[hook_ppdb]"
+                                id="hook_ppdb" :value="old('hook_ppdb', $settings['hook_ppdb']['value'])" />
+                            <x-form-input :label="__('Link PPDB')" name="setting[link_ppdb]" id="link-ppdb"
+                                :value="old('link_ppdb', $settings['link_ppdb']['value'])" />
+                        </div>
                         <div class="col-md-6">
                             <x-form-image :label="__('Gambar Jalur Masuk')" previewId="image-preview-jalur-masuk"
                                 inputId="image-input-jalur-masuk" id="jalur-masuk-image" name="jalur_masuk_image"

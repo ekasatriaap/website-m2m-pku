@@ -24,9 +24,9 @@
                 <div class="widget">
                     <h4 class="widget-title mb-3 text-white">Peta Situs</h4>
                     <ul class="list-unstyled mb-0">
-                        <li><a href="visi-misi.php">Visi Misi</a></li>
-                        <li><a href="faq.php">FAQ</a></li>
-                        <li><a href="#">Berita</a></li>
+                        <li><a href="{{ route('visi_misi') }}">Visi Misi</a></li>
+                        <li><a href="{{ route('faq') }}">FAQ</a></li>
+                        <li><a href="{{ route('news') }}">Berita</a></li>
                     </ul>
                 </div>
                 <!-- /.widget -->

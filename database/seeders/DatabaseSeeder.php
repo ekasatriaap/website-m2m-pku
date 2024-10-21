@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\VisiMisi;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
             SettingBerandaWebSeeder::class,
             DescriptionAnggotaSeeder::class,
             SettingPPDBSeeder::class,
+            VisiMisiSeeder::class,
         ];
         $this->call($seeders);
     }

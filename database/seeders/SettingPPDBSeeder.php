@@ -42,6 +42,16 @@ class SettingPPDBSeeder extends Seeder
                 "param" => "jalur_masuk_image",
                 "value" => "",
                 "description" => "Gambar jalur masuk yang akan digunakan di halaman PPDB",
+            ],
+            [
+                "param" => "hook_ppdb",
+                "value" => "Lebih dari 5000 orang sudah menjadi alumni MAN 2 Kota Pekanbaru. Ayo join menjadi anggota dari alumni MAN 2 Pekanbaru",
+                "description" => "Kata-kata marketing untuk menarik calon siswa baru",
+            ],
+            [
+                "param" => "link_ppdb",
+                "value" => "https://man2pekanbaru.com",
+                "description" => "Link pendaftaran calon siswa baru",
             ]
         ])->each(function ($item) {
             $today = [

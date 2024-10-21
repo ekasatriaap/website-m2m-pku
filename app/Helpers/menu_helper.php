@@ -87,6 +87,11 @@ if (!function_exists('getMenu')) {
           ]
         ],
         [
+          "name" => "Visi Misi",
+          "url" => "cms.visi_misi.edit",
+          "icon" => "fas fa-eye",
+        ],
+        [
           "name" => "Informasi PPDB",
           "icon" => "fas fa-scroll",
           "child" => [
@@ -125,6 +130,11 @@ if (!function_exists('getMenu')) {
               "url" => "cms.menu.index",
             ]
           ]
+        ],
+        [
+          "name" => "FAQ",
+          "url" => "cms.faq.index",
+          "icon" => "fas fa-question-circle",
         ]
       ];
     }
