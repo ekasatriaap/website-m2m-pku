@@ -38,3 +38,7 @@ const JENIS_PROFILE = [
   "komite" => "Komite",
   "struktural" => "Struktural",
 ];
+
+const JENIS_PROFILE_MADRASAH = "madrasah";
+const JENIS_PROFILE_KOMITE = "komite";
+const JENIS_PROFILE_STRUKTURAL = "struktural";

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('jalur_masuk_ppdb', function (Blueprint $table) {
             $table->id();
             $table->string('nama_jalur');
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string("persyaratan")->nullable();
             $table->timestamps();
         });

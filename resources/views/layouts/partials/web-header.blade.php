@@ -19,7 +19,7 @@
                             @if ($item->children->isEmpty())
                                 <li class="nav-item">
                                     <a class="nav-link"
-                                        href="{{ $item['type'] == TYPE_MENU_INTERNAL ? env('APP_URL') . $item['url'] : $item['url'] }}"
+                                        href="{{ $item['type'] == TYPE_MENU_INTERNAL ? url($item['url']) : $item['url'] }}"
                                         target="{{ $item['target'] }}">{{ $item['nama_menu'] }}</a>
                                 </li>
                             @else
@@ -30,7 +30,7 @@
                                         @foreach ($item->children as $child)
                                             <li class="nav-item">
                                                 <a class="dropdown-item"
-                                                    href="{{ $child['type'] == TYPE_MENU_INTERNAL ? env('APP_URL') . $child['url'] : $child['url'] }}"
+                                                    href="{{ $child['type'] == TYPE_MENU_INTERNAL ? url($child['url']) : $child['url'] }}"
                                                     target="{{ $child['target'] }}">{{ $child['nama_menu'] }}</a>
                                             </li>
                                         @endforeach

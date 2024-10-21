@@ -11,7 +11,7 @@
     <x-form-select :label="__('Page')" id="page" name="page" :value="old('page', $menu->url)" :options="$pages"
         placeholder="Parent" />
 </div>
-<x-form-input :label="__('Icon')" id="icon" name="icon" :value="old('icon', $menu->icon)" />
+{{-- <x-form-input :label="__('Icon')" id="icon" name="icon" :value="old('icon', $menu->icon)" /> --}}
 <x-form-select :label="__('Target')" id="target" name="target" :value="old('target', $menu->target)" :options="$target_menus" />
 
 <script>

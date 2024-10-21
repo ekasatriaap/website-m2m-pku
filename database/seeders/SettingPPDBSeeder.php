@@ -29,7 +29,7 @@ class SettingPPDBSeeder extends Seeder
                 "description" => "Deskripsi utama yang akan digunakan di halaman utama PPDB",
             ],
             [
-                "param" => "syarat_umum_decription",
+                "param" => "syarat_umum_description",
                 "value" => "lorem ipsum dolor sit amet",
                 "description" => "Deskripsi syarat umum yang akan digunakan di halaman PPDB",
             ],

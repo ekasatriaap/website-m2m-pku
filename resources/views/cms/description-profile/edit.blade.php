@@ -22,8 +22,8 @@
                                 name="setting[description_komite]" id="description-komite" :value="$settings['description_komite']['value']" />
                         </div>
                         <div class="col-md-6">
-                            <x-form-image :label="__('Gambar Profile Komite')" previewId="foto-preview-komite" inputId="foto-input-komite"
-                                id="komite-image" name="image_komite" :default="$settings['image_komite']['value']" />
+                            <x-form-image :label="__('Gambar Profile Komite')" previewId="image-preview-komite"
+                                inputId="image-input-komite" id="komite-image" name="image_komite" :default="$settings['image_komite']['value']" />
                         </div>
                     </x-row>
                     <x-row>

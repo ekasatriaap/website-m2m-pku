@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    @include('layouts.partials.web-meta')
-    <title>{{ $title }}</title>
+    @include('layouts.partials.web-meta', ['meta' => $meta])
+    <title>{{ $setting['alias'] }} | {{ $title }}</title>
     @if ($setting['favicon'])
         <link rel="shortcut icon" href="{{ asset('/storage/uploads/' . $setting['favicon']) }}">
     @endif

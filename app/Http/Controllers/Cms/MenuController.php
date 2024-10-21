@@ -43,7 +43,10 @@ class MenuController extends Controller
         try {
             $attributes = $request->validated();
             $attributes['urutan'] = Menu::max('urutan') + 1;
-            $attributes['url'] = $attributes['type'] == TYPE_MENU_INTERNAL ? request()->page ?? '#' : request()->url;
+            $attributes['url'] = request()->url;
+            if ($attributes['type'] == TYPE_MENU_INTERNAL) {
+                $attributes['url'] = request()->page ? '/halaman/' . request()->page : "#";
+            }
 
             Menu::create($attributes);
         } catch (\Exception $e) {

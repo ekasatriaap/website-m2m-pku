@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('setting_ppdb', function (Blueprint $table) {
             $table->string("param")->primary();
-            $table->string("value")->nullable();
+            $table->longText("value")->nullable();
             $table->string("description")->nullable();
             $table->timestamps();
         });

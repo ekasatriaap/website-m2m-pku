@@ -225,7 +225,7 @@
                             <div class="swiper-slide">
                                 <article>
                                     <figure class="overlay overlay-1 hover-scale rounded mb-5"><a
-                                            href="./berita-detail.php"> <img
+                                            href="{{ route('news_detail', $berita->slug) }}"> <img
                                                 src="{{ asset('/storage/uploads/' . $berita->thumbnail) }}"
                                                 alt="" /></a>
                                         <figcaption>
@@ -239,7 +239,8 @@
                                         </div>
                                         <!-- /.post-category -->
                                         <h2 class="post-title h3 mt-0 mb-0"><a class="link-dark"
-                                                href="./berita-detail.php">{{ $berita->title }}</a></h2>
+                                                href="{{ route('news_detail', $berita->slug) }}">{{ $berita->title }}</a>
+                                        </h2>
                                     </div>
                                     <!-- /.post-header -->
                                     <div class="post-footer">

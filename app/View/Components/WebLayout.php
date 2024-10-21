@@ -16,8 +16,9 @@ class WebLayout extends Component
     public $title;
     public $setting;
     public $menu;
+    public $meta;
 
-    public function __construct()
+    public function __construct($title = null, $meta = null)
     {
         $this->title = $title ?? "Dashboard";
         $this->setting = getSettingWebsite();
@@ -25,6 +26,7 @@ class WebLayout extends Component
             ->whereNull("parent_id")
             ->orderBy("urutan")
             ->get();
+        $this->meta = $meta;
     }
 
     /**
@@ -32,6 +34,6 @@ class WebLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('layouts.web-layout');
+        return view('layouts.web-layout', ['title' => $this->title]);
     }
 }

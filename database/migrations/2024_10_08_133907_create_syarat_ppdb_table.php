@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('syarat_ppdb', function (Blueprint $table) {
             $table->id();
             $table->string('syarat_name');
-            $table->string('description');
+            $table->longText('description');
             $table->integer('urutan')->default(1);
             $table->timestamps();
         });
