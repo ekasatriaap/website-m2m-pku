@@ -22,7 +22,7 @@
             {{-- navbar end --}}
 
             {{-- sidebar start --}}
-            @include('layouts.partials.sidebar')
+            @include('layouts.partials.sidebar', ['setting' => $setting])
             {{-- sidebar end --}}
 
             <!-- Main Content -->
