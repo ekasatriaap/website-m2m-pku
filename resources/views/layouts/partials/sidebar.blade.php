@@ -1,10 +1,10 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">MAN 2 PKU</a>
+            <a href="{{ route('cms.dashboard') }}">{{ $setting['alias'] }}</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">M2P</a>
+            <a href="{{ route('cms.dashboard') }}">{{ substr($setting['alias'], 1, 1) }}</a>
         </div>
         <ul class="sidebar-menu">
             @foreach (getMenu() as $parent)
@@ -33,7 +33,7 @@
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-            <a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg btn-block btn-icon-split">
+            <a href="{{ route('dashboard') }}" target="_blank" class="btn btn-primary btn-lg btn-block btn-icon-split">
                 <i class="fas fa-rocket"></i> Website
             </a>
         </div>
