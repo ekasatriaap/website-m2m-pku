@@ -1,14 +1,18 @@
 @php
-    $hide = true;
-    $type_menu = old('type', $menu->type) == TYPE_MENU_INTERNAL ? false : true;
+    $hide = old('type', $menu->type) == TYPE_MENU_INTERNAL ? true : false;
+    $url = $menu->url;
+    if ($menu->type == TYPE_MENU_INTERNAL) {
+        $url_exp = explode('/', $menu->url);
+        $url = $url_exp[2] ?? null;
+    }
 @endphp
 <x-form-input :label="__('Nama Menu')" id="nama-menu" name="nama_menu" :value="old('nama_menu', $menu->nama_menu)" />
 <x-form-select :label="__('Type')" id="type" name="type" :value="old('type', $menu->type)" :options="$type_menus" />
 <div class="{{ $hide == true ? 'd-none' : '' }}" id="url">
-    <x-form-input :label="__('URL')" id="url" name="url" :value="old('url', $menu->url)" />
+    <x-form-input :label="__('URL')" id="url" name="url" :value="old('url', $url)" />
 </div>
 <div class="{{ $hide == true ? '' : 'd-none' }}" id="page">
-    <x-form-select :label="__('Page')" id="page" name="page" :value="old('page', $menu->url)" :options="$pages"
+    <x-form-select :label="__('Page')" id="page" name="page" :value="old('page', $url)" :options="$pages"
         placeholder="Parent" />
 </div>
 {{-- <x-form-input :label="__('Icon')" id="icon" name="icon" :value="old('icon', $menu->icon)" /> --}}

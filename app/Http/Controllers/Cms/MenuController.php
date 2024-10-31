@@ -81,6 +81,10 @@ class MenuController extends Controller
                 throw new Exception();
             }
             $attributes = $validator->validated();
+            $attributes['url'] = request()->url;
+            if ($attributes['type'] == TYPE_MENU_INTERNAL) {
+                $attributes['url'] = request()->page ? '/halaman/' . request()->page : "#";
+            }
             $menu = Menu::findOrFail($id);
             $menu->update($attributes);
         } catch (\Exception $e) {

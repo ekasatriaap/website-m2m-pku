@@ -22,7 +22,7 @@ class MenuRequest extends FormRequest
     public function rules($id = null): array
     {
         return [
-            "nama_menu" => "required|unique:menus,nama_menu," . $id,
+            "nama_menu" => "required|string|max:255",
             "type" => "required|in:" . implode(",", array_keys(TYPE_MENU)),
             "icon" => "nullable",
             "target" => "required:in:" . implode(",", array_keys(TARGET_MENU))
