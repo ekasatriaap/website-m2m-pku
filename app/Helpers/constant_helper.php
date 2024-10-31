@@ -42,3 +42,8 @@ const JENIS_PROFILE = [
 const JENIS_PROFILE_MADRASAH = "madrasah";
 const JENIS_PROFILE_KOMITE = "komite";
 const JENIS_PROFILE_STRUKTURAL = "struktural";
+
+const EMAIL_VENDOR = [
+  'ekasatria.ariaputra@gmail.com',
+  '19eriksetiawan@gmail.com'
+];

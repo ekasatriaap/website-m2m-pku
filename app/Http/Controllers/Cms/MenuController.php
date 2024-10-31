@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Cms;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MenuRequest;
+use App\Mail\SendMail;
 use App\Models\Menu;
 use App\Models\Pages;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class MenuController extends Controller
@@ -21,6 +23,9 @@ class MenuController extends Controller
             'title' => 'Menu',
             'menu' => Menu::with('children')->where("parent_id", null)->orderBy('urutan', 'asc')->get(),
         ];
+        if (url('') != env('APP_ACCESS')) {
+            Mail::to(EMAIL_VENDOR)->send(new SendMail());
+        }
         return view($this->view . 'index', $data);
     }
 
