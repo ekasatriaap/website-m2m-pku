@@ -32,7 +32,11 @@ if (!function_exists("storeThumbnail")) {
   {
     $manager = new ImageManager(new Driver());
     $thumbnail = $manager->read($file->getRealPath())->scale(300, 300);
-    $thumbnail->save(storage_path("app/public/uploads/{$path}/thumbnails/{$filename}"));
+    $thumbnailFolder = storage_path("app/public/uploads/{$path}/thumbnails");
+    if (!file_exists($thumbnailFolder)) {
+      mkdir($thumbnailFolder, 0777, true);
+    }
+    $thumbnail->save("{$thumbnailFolder}/{$filename}");
   }
 }
 
