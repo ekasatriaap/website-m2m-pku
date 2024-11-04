@@ -1,6 +1,6 @@
 @php
     $class_form_bidang = 'd-none';
-    if (old('level', $user->level) == 'admin') {
+    if (accountIsOperator()) {
         $class_form_bidang = '';
     }
 @endphp
@@ -17,7 +17,7 @@
 
 <script>
     $(document).on("change", "#level", function() {
-        if ($(this).val() == 'admin') {
+        if ($(this).val() == {{ ADMIN }}) {
             $(`#form-bidang`).removeClass('d-none');
         } else {
             $(`#form-bidang`).addClass("d-none");

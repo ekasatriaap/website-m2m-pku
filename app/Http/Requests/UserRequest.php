@@ -25,8 +25,8 @@ class UserRequest extends FormRequest
             'name' => "required|string|max:255",
             'username' => "required|string|max:255|unique:users,username," . ($id ?? ''),
             'email' => "required|string|email|max:255|unique:users,email," . ($id ?? ''),
-            'level' => "required|string|in:" . implode(',', array_keys(LEVEL_USER)),
-            'id_bidang' => $this->input('level') === 'admin' ? 'required|exists:bidangs,id' : 'nullable',
+            'level' => "string|in:" . implode(',', array_keys(LEVEL_USER)),
+            'id_bidang' => $this->input('level') === ADMIN ? 'required|exists:bidangs,id' : 'nullable',
         ];
     }
 

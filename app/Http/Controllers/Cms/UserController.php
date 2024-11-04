@@ -41,6 +41,7 @@ class UserController extends Controller
         $attributes = $request->validated();
         DB::beginTransaction();
         try {
+            if (accountIsOperator()) $attributes['level'] = ADMIN;
             $attributes['password'] = bcrypt($attributes['username']);
             User::create($attributes);
         } catch (\Exception $e) {
@@ -75,6 +76,7 @@ class UserController extends Controller
         DB::beginTransaction();
         try {
             $user = User::findOrFail($id);
+            if (accountIsOperator()) $attributes['level'] = ADMIN;
             $user->update($attributes);
         } catch (\Exception $e) {
             DB::rollBack();
