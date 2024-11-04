@@ -1,5 +1,5 @@
 @php
-    $hide = old('type', $menu->type) == TYPE_MENU_INTERNAL ? true : false;
+    $hide = old('type', $menu->type) == TYPE_MENU_INTERNAL ? false : true;
     $url = $menu->url;
     if ($menu->type == TYPE_MENU_INTERNAL) {
         $url_exp = explode('/', $menu->url);
@@ -8,10 +8,10 @@
 @endphp
 <x-form-input :label="__('Nama Menu')" id="nama-menu" name="nama_menu" :value="old('nama_menu', $menu->nama_menu)" />
 <x-form-select :label="__('Type')" id="type" name="type" :value="old('type', $menu->type)" :options="$type_menus" />
-<div class="{{ $hide == true ? 'd-none' : '' }}" id="url">
+<div class="{{ $hide == true ? '' : 'd-none' }}" id="url">
     <x-form-input :label="__('URL')" id="url" name="url" :value="old('url', $url)" />
 </div>
-<div class="{{ $hide == true ? '' : 'd-none' }}" id="page">
+<div class="{{ $hide == true ? 'd-none' : '' }}" id="page">
     <x-form-select :label="__('Page')" id="page" name="page" :value="old('page', $url)" :options="$pages"
         placeholder="Parent" />
 </div>
