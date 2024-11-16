@@ -65,8 +65,8 @@
 
                         </div>
                         <!--/column -->
-                        <div class="col-lg-6  align-items-end d-flex position-relative">
-                            <img class="img-fluid pt-auto mt-auto ms-auto mx-auto me-lg-8" src="{{ asset('/storage/uploads/' . $setting['section_2_foto']['value']) }}" srcset="{{ asset('/storage/uploads/' . $setting['section_2_foto']['value']) }} 2x" alt="" data-cue="fadeIn">
+                        <div class="col-lg-6  align-items-end d-flex ">
+                            <img class="img-fluid pt-auto mt-auto ms-auto mx-auto me-lg-8" src="{{ asset('/storage/uploads/' . $setting['section_2_foto']['value']) }}" alt="" data-cue="fadeIn">
                             <div data-cue="slideInRight" class="mb-2" data-delay="300">
                                 <div class="card shadow-lg position-absolute" style="bottom: 10%; right: -3%;">
                                     <div class="card-body py-2 px-5">
